@@ -1,5 +1,6 @@
 #importing libraries
 import os
+import json
 
 import flask
 import pickle
@@ -17,5 +18,11 @@ def index():
 
 @app.route('/test')
 def test():
-    print(">>>>>>>>>>>>>")
-    return 'Hello, World!'
+ data = {"data" : [("A",3),("B",2),("C",7),("D",10),("E",12),("F",9)]}
+ return json.dumps(data)
+
+
+
+
+if __name__ == "__main__":
+    app.run(use_reloader=True)
