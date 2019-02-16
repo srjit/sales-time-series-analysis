@@ -13,3 +13,9 @@ app=Flask(__name__)
 @app.route('/index')
 def index():
     return flask.render_template('index.html')
+
+
+@app.route('/test')
+def test():
+    print(">>>>>>>>>>>>>")
+    return 'Hello, World!'
