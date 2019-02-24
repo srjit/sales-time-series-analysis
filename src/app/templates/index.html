@@ -9,7 +9,7 @@
     <!-- <link href="{{ url_for('static', filename='css/dataTables.bootstrap4.min.css') }}" rel="stylesheet"> -->
 
     <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.2/css/font-awesome.min.css"> -->
-<!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
+    <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous"> -->
 
     
 
@@ -49,58 +49,59 @@
     <div class="mx-auto" style="width: 200px;">
       <div class="row align-items-center">
         <!-- <div class="container  has-text-centered"> -->
-            <h3 class="title">
-                  <!-- Configure <i class="fas fa-database"></i> -->
-            </h3>
+          <h3 class="title">
+            <!-- Configure <i class="fas fa-database"></i> -->
+          </h3>
         </div>
-    </div>    
-    
-    
-    <div class="container-fluid ml-1">
-      <div class="container">
-	<div class="row">
-	  <div class="col-md-5" class="pull-left">
-	    <h3 class="title" style="font-family: 'Lato">Sales Data: View <i class="fas fa-database"></i></h3>
-	    <table id="dataviewer"  class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
-	      
-	      {% for result in results %}
-	          <tr>{% for elem in result %}
-	              <td>{{elem}}</td>
-		      {% endfor %}
-		  </tr>
-	      {% endfor %}
-	    </table>
-	  </div>
-	  <div class="col-md-5">
-	    <h3 class="title" style="font-family: 'Lato">Configure and Analyze <i class="fas fa-chart-line"></i>
-	      <div id='viz'>
-	      </div>
+      </div>    
+      
+      
+      <div class="container-fluid" style="padding-top:30px;padding-bottom:30px;position:absolute;">
+	<div class="container">
+	  <div class="row">
+	    <div class="col-md-5" style="padding-top:20px;">
+	      <h3 class="title" style="font-family: 'Lato">Sales Data: View <i class="fas fa-database"></i></h3>
+	      <table id="dataviewer"  class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+		
+		{% for result in results %}
+	        <tr>{% for elem in result %}
+	          <td>{{elem}}</td>
+		  {% endfor %}
+		</tr>
+		{% endfor %}
+	      </table>
+	    </div>
+	    <div class="col-md-5" style="padding-top:20px;">
+	      <h3 class="title" style="font-family: 'Lato">Configure and Analyze <i class="fas fa-chart-line"></i>
+		{% include 'algorithm_options.html' %}
+		<div id='viz'>
+		</div>
+	    </div>
 	  </div>
 	</div>
       </div>
-    </div>
-    
-    <!-- Click here: <button onclick="test()" >Click me</button> -->
-
-    <script type="text/javascript">
-
-      $(document).ready(function() {
-      	  $('#dataviewer').DataTable({
-	      "scrollX": true
-	  });
-
-      });
-	  
       
-      function test() {
-	  $.ajax({url: "/test", success: function(result){
-	      console.log(result);
-	      drawSimpleChart(result);
-	  }});
-      }
+      <!-- Click here: <button onclick="test()" >Click me</button> -->
 
-      test();
-    </script>
+      <script type="text/javascript">
+
+	$(document).ready(function() {
+      	    $('#dataviewer').DataTable({
+		"scrollX": true
+	    });
+
+	});
+	
+	
+	function test() {
+	    $.ajax({url: "/test", success: function(result){
+		console.log(result);
+		drawSimpleChart(result);
+	    }});
+	}
+
+	test();
+      </script>
   </body>
   
 </html>

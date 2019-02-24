@@ -15,18 +15,11 @@ app=Flask(__name__)
 @app.route('/')
 @app.route('/index')
 def index():
-    l1 = [1,2,3,4,5,6]
-    l2 = [4,5,6,5,2,3]
-    l3 = [1,5,8,4,5,6]
-    table_data = [l1, l2, l3]
     data = pd.read_csv("../../data/Sales_Multiseries_training.csv")
     data = data[:18].iloc[:,0:5]
     headers = list(data.columns.values)
     body = data.values.tolist()
-    print(headers)
-    print("====")
     body.insert(0, headers)
-#    data = [headers, data.values.tolist()]
     return flask.render_template('index.html', results=body)
 
 
