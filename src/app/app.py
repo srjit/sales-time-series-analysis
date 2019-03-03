@@ -1,12 +1,11 @@
 #importing libraries
 import os
 import json
-
+import train
 import flask
 import pickle
+import datautils
 from flask import Flask, render_template, request
-
-import pandas as pd
 
 #creating instance of the class
 app=Flask(__name__)
@@ -15,20 +14,12 @@ app=Flask(__name__)
 @app.route('/')
 @app.route('/index')
 def index():
-    data = pd.read_csv("../../data/Sales_Multiseries_training.csv")
-    data = data[:18].iloc[:,0:5]
-    headers = list(data.columns.values)
-    body = data.values.tolist()
-    body.insert(0, headers)
+    body = datautils.get_data_to_render()
     return flask.render_template('index.html', results=body)
 
 @app.route('/configure')
 def configure():
-    data = pd.read_csv("../../data/Sales_Multiseries_training.csv")
-    data = data[:18].iloc[:,0:5]
-    headers = list(data.columns.values)
-    body = data.values.tolist()
-    body.insert(0, headers)
+    body = datautils.get_data_to_render()
     return flask.render_template('configure.html', results=body)
 
 
@@ -40,8 +31,17 @@ def test():
 
 @app.route('/retrain',methods = ['POST', 'GET'])
 def retrain():
-    print("hello........")
-    return flask.render_template('forecast.html', results=body)
+    params = request.form
+    algorithm_name = params['algorithm']
+    train_function = getattr(train, algorithm_name)
+    train_function(params)
+    body = datautils.get_data_to_render()
+    return flask.render_template('index.html', results=body)
+
+
+@app.route('/forecast',methods = ['POST', 'GET'])
+def forecast():
+    return flask.render_template('forecast.html')
 
 
 

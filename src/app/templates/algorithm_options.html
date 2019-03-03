@@ -1,14 +1,16 @@
-<form action = "http://localhost:5000/retrain">
+<form action="{{ url_for('retrain') }}" method="post">
   <div class="form-group">
-    <label for="exampleFormControlSelect1">Select the algorithm</label>
+    <label for="exampleFormControlSelect1">Algorithm</label>
     <select class="form-control" id="algorithm" name="algorithm" onclick="show_hide_params()">
+      <option value="" selected disabled>Please select</option>      
       <option value="arima">ARIMA</option>
       <option value="xgboost">XGBoost</option>
       <option value="lstm">LSTM</option>
     </select>
   </div>  
-  
-  <h3 class="title" style="font-family: 'Lato">Parameters</h3> 
+
+  <div id="parameters">
+  <h3 class="title" style="font-family: 'Lato">Parameters</h3>
 
   <!-- XGBoost -->
   <div id="xgboostparams">
@@ -44,7 +46,7 @@
 
     <div class="form-group">
       <label for="exampleInputEmail1">learning_rate</label>
-      <input type="text" class="form-control" name="learning_rate" />    
+      <input type="text" class="form-control" name="learning_rate_lstm" />    
     </div>
 
     <div class="form-group">
@@ -56,8 +58,22 @@
 
     <!-- ARIMA params -->
   <div id="arimaparams">  
-    
-    
+
+    <div class="form-group">
+      <label for="exampleInputEmail1">p</label>
+      <input type="text" class="form-control" name="p" />    
+    </div>
+
+    <div class="form-group">
+      <label for="exampleInputEmail1">q</label>
+      <input type="text" class="form-control" name="q" />    
+    </div>
+
+    <div class="form-group">
+      <label for="exampleInputEmail1">d</label>
+      <input type="text" class="form-control" name="d" />    
+    </div>
+
   </div>	
   
   <!-- <div class="form-check"> -->
@@ -67,16 +83,17 @@
 
   
   <button type="submit" class="btn btn-primary">Retrain</button>
+
+  </div>
   
 </form>
 
 
 <script type="text/javascript">
-$( "#algorithm" ).on("changed.bs.select", function() {
-  alert( "Handler for .change() called." );
-});
 
-  function hello() {
-      alert("hi");
-  }
+  $(document).ready(function() {
+      $("#algorithm").attr('disabled', true);
+      $("#algorithm").attr('disabled', false);
+      $('#parameters').hide();
+  });
 </script>  
