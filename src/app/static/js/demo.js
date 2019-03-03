@@ -1,6 +1,6 @@
-function drawSimpleChart(_data){
+function drawSimpleChart(data){
 
-    var data = JSON.parse(_data)
+    //var data = JSON.parse(data)
 
     /**
      * Transform the data here

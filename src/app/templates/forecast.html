@@ -1,12 +1,17 @@
 <div class="row">
   <div class="col-md-12" style="padding-top:5px;">
     <h3 class="title" style="font-family: 'Lato">Satish's Plot <i class="fas fa-chart-area"></i></h3>
-    <hr style="width: 100%; color: black; height: 1px; background-color:black;" />    
+    <hr style="width: 100%; color: black; height: 1px; background-color:black;" />
+    <div id='viz'>
+    </div>   
   </div>
   <div class="col-md-12" style="padding-top:5px;">
     <h3 class="title" style="font-family: 'Lato">Manaswitha's plot <i class="fas fa-chart-pie"></i></h3>
     
-    <hr style="width: 100%; color: black; height: 1px; background-color:black;" />    
+    <hr style="width: 100%; color: black; height: 1px; background-color:black;" />
+    <div id='viz'>
+    </div>   
+
   </div>
   <div class="col-md-12" style="padding-top:5px;">
     <h3 class="title" style="font-family: 'Lato">Sreejith's Plot <i class="far fa-chart-bar"></i></h3>
@@ -22,6 +27,7 @@
 
   $(document).ready(function() {
       $('#home').addClass('active');
-      $('#forecast').removeClass('active');	    
+      $('#forecast').removeClass('active');
+      drawSimpleChart();
   });
 </script>
