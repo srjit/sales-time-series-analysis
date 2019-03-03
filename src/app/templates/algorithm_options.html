@@ -1,0 +1,82 @@
+<form action = "http://localhost:5000/retrain">
+  <div class="form-group">
+    <label for="exampleFormControlSelect1">Select the algorithm</label>
+    <select class="form-control" id="algorithm" name="algorithm" onclick="show_hide_params()">
+      <option value="arima">ARIMA</option>
+      <option value="xgboost">XGBoost</option>
+      <option value="lstm">LSTM</option>
+    </select>
+  </div>  
+  
+  <h3 class="title" style="font-family: 'Lato">Parameters</h3> 
+
+  <!-- XGBoost -->
+  <div id="xgboostparams">
+    <div class="form-group">
+      <label for="">n_jobs</label>
+      <input type="text" class="form-control" name="n_jobs" />
+    </div>
+
+    <div class="form-group">
+      <label for="exampleInputEmail1">learning_rate</label>
+      <input type="text" class="form-control" name="learning_rate" />    
+    </div>
+
+    <div class="form-group">
+      <label for="exampleInputEmail1">max_depth</label>
+      <input type="text" class="form-control" name="max_depth" />        
+    </div>
+
+    <div class="form-group">
+      <label for="exampleInputEmail1">min_child_weight</label>
+      <input type="text" class="form-control" name="min_child_weight" />
+    </div>
+
+    <div class="form-group">
+      <label for="exampleInputEmail1">n_estimators</label>
+      <input type="text" class="form-control" name="n_estimators" />    
+    </div>
+
+  </div>
+  
+  <!-- LSTM params -->
+  <div id="lstmparams">  
+
+    <div class="form-group">
+      <label for="exampleInputEmail1">learning_rate</label>
+      <input type="text" class="form-control" name="learning_rate" />    
+    </div>
+
+    <div class="form-group">
+      <label for="exampleInputEmail1">optimizer</label>
+      <input type="text" class="form-control" name="optimizer" />    
+    </div>
+
+  </div>	    
+
+    <!-- ARIMA params -->
+  <div id="arimaparams">  
+    
+    
+  </div>	
+  
+  <!-- <div class="form-check"> -->
+  <!--   <input type="checkbox" class="form-check-input" id="exampleCheck1"> -->
+  <!--   <label class="form-check-label" for="exampleCheck1">Check me out</label> -->
+  <!-- </div> -->
+
+  
+  <button type="submit" class="btn btn-primary">Retrain</button>
+  
+</form>
+
+
+<script type="text/javascript">
+$( "#algorithm" ).on("changed.bs.select", function() {
+  alert( "Handler for .change() called." );
+});
+
+  function hello() {
+      alert("hi");
+  }
+</script>  

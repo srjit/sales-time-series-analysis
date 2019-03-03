@@ -22,12 +22,26 @@ def index():
     body.insert(0, headers)
     return flask.render_template('index.html', results=body)
 
+@app.route('/configure')
+def configure():
+    data = pd.read_csv("../../data/Sales_Multiseries_training.csv")
+    data = data[:18].iloc[:,0:5]
+    headers = list(data.columns.values)
+    body = data.values.tolist()
+    body.insert(0, headers)
+    return flask.render_template('configure.html', results=body)
+
 
 @app.route('/test')
 def test():
     data = {"data" : [("A",3),("B",2),("C",7),("D",10),("E",12),("F",9)]}
     return json.dumps(data)
 
+
+@app.route('/retrain',methods = ['POST', 'GET'])
+def retrain():
+    print("hello........")
+    return flask.render_template('forecast.html', results=body)
 
 
 
