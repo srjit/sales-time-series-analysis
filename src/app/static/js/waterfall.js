@@ -25,10 +25,6 @@ function updateData(data){
         return datum.class = datum.value >= 0 ? 'positive' : 'negative';
     }); // data.map
 
-    // insert stacked remainders where approriate
-    // insertStackedRemainderAfter('3rd revenue', 'intermediate total');
-    // insertStackedRemainderAfter('4th revenue', 'final total');
-
     return data;
 };
 
