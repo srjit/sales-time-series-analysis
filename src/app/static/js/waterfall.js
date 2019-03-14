@@ -26,8 +26,8 @@ function updateData(data){
     }); // data.map
 
     // insert stacked remainders where approriate
-    insertStackedRemainderAfter('3rd revenue', 'intermediate total');
-    insertStackedRemainderAfter('4th revenue', 'final total');
+    // insertStackedRemainderAfter('3rd revenue', 'intermediate total');
+    // insertStackedRemainderAfter('4th revenue', 'final total');
 
     return data;
 };
@@ -38,15 +38,13 @@ function drawWaterFallChart(data){
     var margin = { top: 80, right: 30, bottom: 30, left: 50 };
     var width = 960 - margin.left - margin.right;
     var height = 500 - margin.top - margin.bottom;
-    // var width = 500;
-    // var height = 500;
-    var padding = 0.3;
+    var padding = 0.4;
 
     updateData(data);
 
     var x = d3
 	.scaleBand()
-	.rangeRound([ 0, width ])
+	.rangeRound([0, width])
 	.padding(padding);
 
     var y = d3
@@ -67,13 +65,6 @@ function drawWaterFallChart(data){
 	.attr('height', height + margin.top + margin.bottom)
 	.append('g')
 	.attr('transform', `translate(${ margin.left },${ margin.top })`);
-
-
-    var type = (d) => {
-	d.value = +d.value;
-	return d;
-    }; // type
-
 
     var eurFormat = (amount) => {
 	if (Math.abs(amount) > 1000000) {

@@ -5,14 +5,14 @@ body {
 }
 
 .bar.total rect {
-  fill: steelblue;
+  fill: 883000;
 }
 
 .bar.positive rect {
-  fill: darkolivegreen;
+  fill: #FF8C00;
 }
 .bar.negative rect {
-  fill: crimson;
+  fill: #313335;
 }
 
 .bar line.connector {
