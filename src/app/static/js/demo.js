@@ -22,7 +22,7 @@ function drawSimpleChart(data){
 	bottom: 25
     };
 
-    var svg = d3.select("div#viz")
+    var svg = d3.select("div#viz1")
 	.append("svg")
 	.attr("width", width)
 	.attr("height", height);
