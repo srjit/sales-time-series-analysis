@@ -47,7 +47,10 @@ function getTab(tabname){
 		    {"name":"1st spend","value":-3000000},
 		    {"name":"3rd revenue","value":4000000},
 		    {"name":"2nd spend","value":-5500000},
-		    {"name":"4th revenue","value":800000}]
+		    {"name":"4th revenue","value":800000},
+		    {"name":"5th revenue","value":100000},
+		    {"name":"6th revenue","value":50000},
+		    {"name":"3rd spend","value":-2000000}]
 	    drawWaterFallChart(data);
 	    // });
 	    

@@ -31,16 +31,19 @@ function updateData(data){
 
 function drawWaterFallChart(data){
 
-    var margin = { top: 80, right: 30, bottom: 30, left: 50 };
+    var margin = { top: 80, right: 510, bottom: 30, left: 50 };
+//    var width = 960 - margin.left - margin.right;
     var width = 960 - margin.left - margin.right;
     var height = 500 - margin.top - margin.bottom;
     var padding = 0.4;
 
     updateData(data);
 
+    // change the 220 to adjust the width of the canvas - make it dynamic later
+    // a function of the number of values to predict
     var x = d3
 	.scaleBand()
-	.rangeRound([0, width])
+	.rangeRound([0, width + 220])
 	.padding(padding);
 
     var y = d3
