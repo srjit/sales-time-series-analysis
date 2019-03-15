@@ -65,6 +65,21 @@ function drawWaterFallChart(data){
 	.append('g')
 	.attr('transform', `translate(${ margin.left },${ margin.top })`);
 
+    chart.append("text")
+	.attr("x", width/2 + 80)
+	.attr("y", height + 27)
+        .attr("font-size", "14px")
+        .attr("font-family","Lato")
+	.text("Day");
+
+    chart.append("text")
+	.attr("x", -250)
+	.attr("transform", "rotate(-90)")
+	.attr("y", height - 430)
+        .attr("font-size", "14px")
+        .attr("font-family","Lato")
+	.text("Change from base price");
+    
     var eurFormat = (amount) => {
 	if (Math.abs(amount) > 1000000) {
 	    return `${ Math.round(amount / 1000000) }M€`;

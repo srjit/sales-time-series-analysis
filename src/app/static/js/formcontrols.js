@@ -40,20 +40,16 @@ function getTab(tabname){
 	    $('#home').removeClass('active');
 	    $('#forecast').addClass('active');
 	    drawSimpleChart();
-	    //	    demo2();
-	    // d3.csv('data.csv', type, (error, data) => {
-	    data = [{"name":"1st revenue","value":6000000},
-		    {"name":"2nd revenu","value":2000000},
-		    {"name":"1st spend","value":-3000000},
-		    {"name":"3rd revenue","value":4000000},
-		    {"name":"2nd spend","value":-5500000},
-		    {"name":"4th revenue","value":800000},
-		    {"name":"5th revenue","value":100000},
-		    {"name":"6th revenue","value":50000},
-		    {"name":"3rd spend","value":-2000000}]
+	    data = [{"name":"Base Price","value":76819.40},
+		    {"name":"Day + 1","value":2144.46},
+		    {"name":"Day + 2","value":-4139.14},
+		    {"name":"Day + 3","value":3699.20},
+		    {"name":"Day + 4","value":-2078.02},
+		    {"name":"Day + 5","value":4200.20},
+		    {"name":"Day + 6","value":-3910.10},
+		    {"name":"Day + 7","value":2576.75},
+		    {"name":"Day + 8","value":6000.23}]
 	    drawWaterFallChart(data);
-	    // });
-	    
 	}});
     }
 }
