@@ -15,3 +15,11 @@ def get_data_to_render():
     body.insert(0, headers)
     return body
     
+
+
+def get_data():
+
+    data = pd.read_csv("../../data/Sales_Multiseries_training.csv")
+    data["date_"] = pd.to_datetime(arg=data.Date)
+    data = data.sort_values(by="date_")
+    return data

@@ -1,5 +1,6 @@
 ## This file contains the interface to add algorithm train methods
 
+import datautils
 
 __author__ = "Sreejith Sreekumar"
 __email__ = "sreekumar.s@husky.neu.edu"
@@ -35,8 +36,15 @@ def lstm(params):
 
     learning_rate = params["learning_rate_lstm"]
     optimizer = params["optimizer"]
+    train_end_date = params["train_end_date"]
 
     ## retrain lstm here write predictions to file system
+    data = datautils.get_data()
+    lstm.do_walk_forward_validation_and_get_best_model(data,
+                                                       train_end_date,
+                                                       learning_rate,
+                                                       optimizer):
+    
     
     pass
     

@@ -9,10 +9,10 @@ body {
 }
 
 .bar.positive rect {
-  fill: #FF8C00;
+  fill: #313335;
 }
 .bar.negative rect {
-  fill: #313335;
+  fill: #FF8C00;
 }
 
 .bar line.connector {

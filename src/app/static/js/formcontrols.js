@@ -1,6 +1,3 @@
-// $( "#algorithm" ).on("changed.bs.select", function() {
-//   alert( "Handler for .change() called." );
-// });
 
 function show_hide_params(){
 

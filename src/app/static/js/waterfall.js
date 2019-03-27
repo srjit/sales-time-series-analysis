@@ -134,7 +134,6 @@ function drawWaterFallChart(data){
     	})
     	.attr('width', x.bandwidth());
 
-    console.log(bar);
     // // Add the value on each bar
     
     bar
