@@ -120,6 +120,7 @@ def do_walk_forward_validation_and_get_best_model(data,
 
 
     for store in stores:
-
+        print("Training model for store: ", store)
         data_ = data[data.Store == store]
+        walk_forward_validation(data_)
 

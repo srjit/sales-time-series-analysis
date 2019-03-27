@@ -1,6 +1,8 @@
 ## This file contains the interface to add algorithm train methods
 
 import datautils
+from datetime import datetime
+import lstmutils
 
 __author__ = "Sreejith Sreekumar"
 __email__ = "sreekumar.s@husky.neu.edu"
@@ -33,17 +35,24 @@ def xgboost(params):
 
 
 def lstm(params):
-
     learning_rate = params["learning_rate_lstm"]
     optimizer = params["optimizer"]
-    train_end_date = params["train_end_date"]
+    #train_end_date = params["train_end_date"]
+
+    print("########")
+    train_end_date_ = "2014/1/1"
+    train_end_date = datetime.strptime(train_end_date_, "%Y/%M/%d")
+
+    print("Train End Date", train_end_date)
 
     ## retrain lstm here write predictions to file system
     data = datautils.get_data()
-    lstm.do_walk_forward_validation_and_get_best_model(data,
+
+    print("Data received:", data.head())
+    lstmutils.do_walk_forward_validation_and_get_best_model(data,
                                                        train_end_date,
                                                        learning_rate,
-                                                       optimizer):
+                                                       optimizer)
     
     
     pass

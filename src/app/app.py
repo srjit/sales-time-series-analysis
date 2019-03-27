@@ -1,4 +1,8 @@
 #importing libraries
+
+import sys, os
+sys.path.append('.')
+
 import os
 import json
 import train
@@ -32,9 +36,13 @@ def test():
 @app.route('/retrain',methods = ['POST', 'GET'])
 def retrain():
     params = request.form
+    print(params)
     algorithm_name = params['algorithm']
     train_function = getattr(train, algorithm_name)
+    print("Algorithm: ", algorithm_name)
+    print("Function Train: ", train_function)
     train_function(params)
+    
     body = datautils.get_data_to_render()
     return flask.render_template('index.html', results=body)
 
@@ -47,5 +55,4 @@ def forecast():
 
 if __name__ == "__main__":
     app.config['TEMPLATES_AUTO_RELOAD']=True
-    app.run(debug=True,use_reloader=True)    
-    
+    app.run(debug=True,use_reloader=True)
