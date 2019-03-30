@@ -48,16 +48,30 @@ def lstm(params):
     data = datautils.get_data()
 
     print("Data received:", data.head())
-    result = lstmutils.do_walk_forward_validation_and_get_best_model(data,
+    results = lstmutils.do_walk_forward_validation_and_get_best_models(data,
                                                                     train_end_date,
                                                                     learning_rate,
                                                                     optimizer)
+    predictions = {}
 
-    for store, pred in result.items():
-        dates = pd.Series(data[data.date_ > train_end_date].Date)
-        pred = pd.Series(pred)
+    data = datautils.get_data()
+    
+    for result in results:
 
-        pred_for_store_on_date = pd.concat([dates,pred], axis=1)
+        store = result["store"]
+        model = result["model"]
+        scaler = result["scaler"]
+
+        full_data_for_store = data[data.Store == store]
+        test_ = data[data.date_ > train_end_date]
+        dates = list(test_.Date)
+
+        predictions = lstmutils.predict(model, scaler, full_data_for_store, train_end_date)
+        
+        import ipdb
+        ipdb.set_trace()
+
+        pred_for_store_on_date = pd.concat([dates,predictions], axis=1)
 
         import ipdb
         ipdb.set_trace()
