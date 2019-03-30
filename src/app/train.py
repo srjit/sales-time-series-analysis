@@ -4,11 +4,11 @@ import datautils
 from datetime import datetime
 import lstmutils
 
+import pandas as pd
+
 __author__ = "Sreejith Sreekumar"
 __email__ = "sreekumar.s@husky.neu.edu"
 __version__ = "0.0.1"
-
-
 
 
 def arima(params):
@@ -33,7 +33,6 @@ def xgboost(params):
     pass
 
 
-
 def lstm(params):
     learning_rate = params["learning_rate_lstm"]
     optimizer = params["optimizer"]
@@ -49,11 +48,19 @@ def lstm(params):
     data = datautils.get_data()
 
     print("Data received:", data.head())
-    lstmutils.do_walk_forward_validation_and_get_best_model(data,
-                                                       train_end_date,
-                                                       learning_rate,
-                                                       optimizer)
-    
-    
+    result = lstmutils.do_walk_forward_validation_and_get_best_model(data,
+                                                                    train_end_date,
+                                                                    learning_rate,
+                                                                    optimizer)
+
+    for store, pred in result.items():
+        dates = pd.Series(data[data.date_ > train_end_date].Date)
+        pred = pd.Series(pred)
+
+        pred_for_store_on_date = pd.concat([dates,pred], axis=1)
+
+        import ipdb
+        ipdb.set_trace()
+        
     pass
     

@@ -6,6 +6,7 @@ from keras.models import Sequential
 from keras.layers import Dense
 from keras.layers import LSTM
 
+import pandas as pd
 
 from sklearn.metrics import mean_squared_error
 from sklearn.metrics import mean_absolute_error
@@ -22,9 +23,6 @@ __version__ = "0.0.1"
 
 def build_model_and_evaluate(X_train, y_train, X_test, y_test):
 
-    import ipdb
-    ipdb.set_trace()
-    
     regressor = Sequential()
     regressor.add(LSTM(units = 3, input_shape = (None, 1)))
     regressor.add(Dense(units = 1))
@@ -34,10 +32,10 @@ def build_model_and_evaluate(X_train, y_train, X_test, y_test):
     inputs = np.array(X_test)
     inputs = np.reshape(inputs, (inputs.shape[0], inputs.shape[1], 1))
     predicted = regressor.predict(inputs)
-    predicted_price = sc.inverse_transform(predicted)
-    
-    rmse = math.sqrt(mean_squared_error(y_test, predicted_price))
-    return rmse
+    predicted_prices = sc.inverse_transform(predicted)
+
+    rmse = math.sqrt(mean_absolute_error(y_test, predicted))
+    return predicted_prices.reshape(len(predicted_prices),), rmse
 
     
 def validate(train, test):
@@ -46,7 +44,7 @@ def validate(train, test):
     y_train = []
     for i in range(7, len(train)):
         X_train.append(train[i-7:i, 0])
-        y_train.append(train[i, 0])
+        y_train.append(train[i][0])
         
     X_train, y_train = np.array(X_train), np.array(y_train)
     X_train = np.reshape(X_train, (X_train.shape[0], X_train.shape[1], 1))
@@ -54,13 +52,13 @@ def validate(train, test):
     # Test data
     X_test = []
     y_test = []
-    import ipdb
     full_data = np.append(train, test)
     full_data = full_data.reshape(len(full_data),1)
-    for i in range(len(train)-7, len(full_data)):
+    for i in range(len(train)-7, len(full_data)-7):
         X_test.append(full_data[i-7:i])
-    y_test = test
-    
+    y_test = test.reshape(len(test),)
+    X_test = np.array(X_test)
+
     return build_model_and_evaluate(X_train, y_train, X_test, y_test)    
 
 
@@ -72,12 +70,9 @@ def walk_forward_validation(data_, train_end_date):
     train = data_[data_.date_ <= stop_date].iloc[:,2:3].values
     test = data_[data_.date_ > stop_date].iloc[:,2:3].values
 
-    print("##########")
-    print(len(train))
-    
     train_ = sc.fit_transform(train)
     test_ = sc.transform(test)
-    rmse1 = validate(train_, test_)
+    predicted1, rmse1 = validate(train_, test_)
 
     ## val model 2
     stop_date = train_end_date + datetime.timedelta(-120)
@@ -86,7 +81,7 @@ def walk_forward_validation(data_, train_end_date):
 
     train_ = sc.fit_transform(train)
     test_ = sc.transform(test)
-    rmse2 = validate(train_, test_)
+    predicted2, rmse2 = validate(train_, test_)
     
 
     ## val model 3
@@ -96,7 +91,7 @@ def walk_forward_validation(data_, train_end_date):
 
     train_ = sc.fit_transform(train)
     test_ = sc.transform(test)
-    rmse3 = validate(train_, test_)
+    predicted3, rmse3 = validate(train_, test_)
     
 
     ## val model 4
@@ -106,7 +101,7 @@ def walk_forward_validation(data_, train_end_date):
 
     train_ = sc.fit_transform(train)
     test_ = sc.transform(test)
-    rmse4 = validate(train_, test_)
+    predicted4, rmse4 = validate(train_, test_)
     
 
     ## val model 5
@@ -116,9 +111,14 @@ def walk_forward_validation(data_, train_end_date):
 
     train_ = sc.fit_transform(train)
     test_ = sc.transform(test)
-    rmse5 = validate(train_, test_)
+    predicted5, rmse5 = validate(train_, test_)
     
     ## choose the model with the best rmse here
+    index = np.argmax([rmse1, rmse2, rmse3, rmse4, rmse5])
+    predictions = [predicted1, predicted2, predicted3, predicted4, predicted5][index]
+
+    ## write predictions for each day
+    return predictions
     
        
 
@@ -129,10 +129,15 @@ def do_walk_forward_validation_and_get_best_model(data,
                                                   optimizer):
 
     stores = data.Store.unique()
-
-
-    for store in stores:
+    result = {}
+    
+    for store in stores[:1]:
         print("Training model for store: ", store)
         data_ = data[data.Store == store]
-        walk_forward_validation(data_, train_end_date)
+        predictions = walk_forward_validation(data_, train_end_date)
+
+        result[store] = predictions
+
+    return result
+        
 
