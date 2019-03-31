@@ -160,7 +160,7 @@ def do_walk_forward_validation_and_get_best_models(data,
     stores = data.Store.unique()
     result = []
     
-    for store in stores[:1]:
+    for store in stores:
         store_res = {}
         store_res["store"] = store
         
