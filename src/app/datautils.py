@@ -23,3 +23,11 @@ def get_data():
     data["date_"] = pd.to_datetime(arg=data.Date)
     data = data.sort_values(by="date_")
     return data
+
+
+
+def write_predictions(modeltype, storename, data):
+
+    write_location = "predictions/" + modeltype + "/" + storename + ".csv"
+    data.to_csv(write_location, index=False)
+    

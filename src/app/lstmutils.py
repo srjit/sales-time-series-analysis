@@ -69,7 +69,7 @@ def predict(model, sc, full_data, train_end_date):
 
     train_ = full_data[full_data.date_ <= train_end_date].iloc[:,2:3].values
     test_ = full_data[full_data.date_ > train_end_date].iloc[:,2:3].values
-    full_data = full_data.iloc[:,2:3].values
+    full_data = sc.transform(full_data.iloc[:,2:3].values)
 
     X_pred = []
     for i in range(len(train_)-7, len(full_data)-7):

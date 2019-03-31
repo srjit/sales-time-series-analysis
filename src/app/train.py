@@ -34,12 +34,13 @@ def xgboost(params):
 
 
 def lstm(params):
+    modeltype = "lstm"
     learning_rate = params["learning_rate_lstm"]
     optimizer = params["optimizer"]
     #train_end_date = params["train_end_date"]
 
     print("########")
-    train_end_date_ = "2014/4/1"
+    train_end_date_ = params["train_end_date"]
     train_end_date = datetime.strptime(train_end_date_, "%Y/%m/%d")
 
     print("Train End Date", train_end_date)
@@ -54,7 +55,7 @@ def lstm(params):
                                                                     optimizer)
     predictions = {}
     data = datautils.get_data()
-    
+
     for result in results:
 
         store = result["store"]
@@ -62,21 +63,25 @@ def lstm(params):
         scaler = result["scaler"]
 
         full_data_for_store = data[data.Store == store]
-        test_ = data[data.date_ > train_end_date]
-        dates = list(test_.Date)
 
+        print("Creating predictions for store: ", store)
         predictions = lstmutils.predict(model,
                                         scaler,
                                         full_data_for_store,
                                         train_end_date)
-        
-        import ipdb
-        ipdb.set_trace()
 
-        pred_for_store_on_date = pd.concat([dates,predictions], axis=1)
+        test_ = data[(data.Store == store) & (data.date_ > train_end_date)]
+
+        prices = pd.Series(predictions.reshape(len(predictions),).tolist(), name="predictions")
+        dates = test_.Date.reset_index(drop=True)
+
+        pred_for_store_on_date = pd.concat([dates,prices],
+                                           axis=1)
 
         import ipdb
-        ipdb.set_trace()
-        
+        ipdb.set_trace()        
+
+        datautils.write_predictions(modeltype, store, pred_for_store_on_date)
+
     pass
     
