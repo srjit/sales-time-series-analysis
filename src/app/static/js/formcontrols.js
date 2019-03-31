@@ -70,3 +70,10 @@ function getTab(tabname){
 	}});
     }
 }
+
+
+
+function showpred(){
+    var algorithm = $('#predalgorithm').val();
+    alert("Displaying predictions from: " + algorithm);
+}
