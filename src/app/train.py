@@ -77,9 +77,6 @@ def lstm(params):
         pred_for_store_on_date = pd.concat([dates,prices],
                                            axis=1)
 
-        import ipdb
-        ipdb.set_trace()        
-
         datautils.write_predictions(modeltype, store, pred_for_store_on_date)
 
     return "Success"
