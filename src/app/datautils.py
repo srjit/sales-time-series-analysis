@@ -1,4 +1,7 @@
 import pandas as pd
+import os
+import csv
+
 
 __author__ = "Sreejith Sreekumar"
 __email__ = "sreekumar.s@husky.neu.edu"
@@ -27,7 +30,28 @@ def get_data():
 
 
 def write_predictions(modeltype, storename, data):
-
     write_location = "predictions/" + modeltype + "/" + storename + ".csv"
     data.to_csv(write_location, index=False)
+    
+def get_predictions(modeltype):
+    read_location = "predictions/" + modeltype + "/"
+    filenames = os.listdir(read_location)
+    suffix = ".csv"
+    filenames = [filename for filename in filenames if filename.endswith(suffix)]
+
+    to_return = {}
+    for filename in filenames:
+        storename = filename.split(".")[0]
+        filepath = read_location + filename
+        to_return[storename] = pd.read_csv(filepath).to_json(orient="records")
+
+    return to_return
+
+
+def get_predictions_of_store(modeltype, store):
+    read_location = "predictions/" + modeltype + "/" + store + ".csv"
+    data = pd.read_csv(read_location).to_json(orient="records")
+    return data
+    
+    
     

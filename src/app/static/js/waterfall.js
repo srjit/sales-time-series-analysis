@@ -92,7 +92,7 @@ function drawWaterFallChart(data){
 
 
     x.domain(data.map((d) => {
-    	return d.name;
+    	return d.Date;
     }));
 
     y.domain([

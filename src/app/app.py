@@ -50,6 +50,19 @@ def retrain():
 def forecast():
     return flask.render_template('forecast.html')
 
+@app.route('/getpredictions', methods=["GET", "POST"])
+def getpredictions():
+    algorithm = request.args['algorithm']
+    predictions = datautils.get_predictions(algorithm)
+    return json.dumps(predictions)    
+
+@app.route('/forcaststore', methods=["GET", "POST"])
+def forcaststore():
+    algorithm = request.args['algorithm']
+    store = request.args['store']
+    predictions = datautils.get_predictions_of_store(algorithm,store)
+    return json.dumps(predictions)    
+
 
 if __name__ == "__main__":
     app.config['TEMPLATES_AUTO_RELOAD']=True

@@ -23,6 +23,24 @@ function show_hide_params(){
 }
 
 
+
+function getForecastData(algorithm, store){
+    $.ajax({url: "/getpredictions",
+    	    data: {
+    		"algorithm": algorithm
+    	    },
+    	    contentType: 'application/json;charset=UTF-8',
+    	    success: function(result){
+		data = $.parseJSON(result)
+		data_ = $.parseJSON(data[store])
+
+		console.log(data_)
+		drawWaterFallChart(data_.slice(1, 10));
+    	    }
+    	   });
+};
+
+
 function getTab(tabname){
     if(tabname == 'home'){
 	$.ajax({url: "/configure", success: function(result){
@@ -37,6 +55,8 @@ function getTab(tabname){
 	    $('#home').removeClass('active');
 	    $('#forecast').addClass('active');
 	    drawSimpleChart();
+	    predictions = getForecastData("lstm", "Louisville");
+	    
 	    data = [{"name":"Base Price","value":76819.40},
 		    {"name":"Day + 1","value":2144.46},
 		    {"name":"Day + 2","value":-4139.14},
@@ -46,7 +66,7 @@ function getTab(tabname){
 		    {"name":"Day + 6","value":-3910.10},
 		    {"name":"Day + 7","value":2576.75},
 		    {"name":"Day + 8","value":6000.23}]
-	    drawWaterFallChart(data);
+	    //drawWaterFallChart(data);
 	}});
     }
 }

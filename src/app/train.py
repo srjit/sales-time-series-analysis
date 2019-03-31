@@ -71,7 +71,7 @@ def lstm(params):
 
         test_ = data[(data.Store == store) & (data.date_ > train_end_date)]
 
-        prices = pd.Series(predictions.reshape(len(predictions),).tolist(), name="predictions")
+        prices = pd.Series(predictions.reshape(len(predictions),).tolist(), name="value")
         dates = test_.Date.reset_index(drop=True)
 
         pred_for_store_on_date = pd.concat([dates,prices],
