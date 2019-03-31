@@ -11,7 +11,7 @@ __version__ = "0.0.1"
 
 def get_data_to_render():
     
-    data = pd.read_csv("../../data/Sales_Multiseries_training.csv")
+    data = pd.read_csv("./data/Sales_Multiseries_training.csv")
     data = data[:18].iloc[:,0:5]
     headers = list(data.columns.values)
     body = data.values.tolist()
@@ -22,7 +22,7 @@ def get_data_to_render():
 
 def get_data():
 
-    data = pd.read_csv("../../data/Sales_Multiseries_training.csv")
+    data = pd.read_csv("./data/Sales_Multiseries_training.csv")
     data["date_"] = pd.to_datetime(arg=data.Date)
     data = data.sort_values(by="date_")
     return data
