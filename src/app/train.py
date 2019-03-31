@@ -39,8 +39,8 @@ def lstm(params):
     #train_end_date = params["train_end_date"]
 
     print("########")
-    train_end_date_ = "2014/1/1"
-    train_end_date = datetime.strptime(train_end_date_, "%Y/%M/%d")
+    train_end_date_ = "2014/4/1"
+    train_end_date = datetime.strptime(train_end_date_, "%Y/%m/%d")
 
     print("Train End Date", train_end_date)
 
@@ -53,7 +53,6 @@ def lstm(params):
                                                                     learning_rate,
                                                                     optimizer)
     predictions = {}
-
     data = datautils.get_data()
     
     for result in results:
@@ -66,7 +65,10 @@ def lstm(params):
         test_ = data[data.date_ > train_end_date]
         dates = list(test_.Date)
 
-        predictions = lstmutils.predict(model, scaler, full_data_for_store, train_end_date)
+        predictions = lstmutils.predict(model,
+                                        scaler,
+                                        full_data_for_store,
+                                        train_end_date)
         
         import ipdb
         ipdb.set_trace()

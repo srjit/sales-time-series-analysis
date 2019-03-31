@@ -13,7 +13,6 @@ from sklearn.metrics import mean_absolute_error
 
 
 from sklearn.preprocessing import MinMaxScaler
-sc = MinMaxScaler(feature_range = (0, 1))
 
 
 __author__ = "Sreejith Sreekumar"
@@ -21,16 +20,17 @@ __email__ = "sreekumar.s@husky.neu.edu"
 __version__ = "0.0.1"
 
 
-def build_model_and_evaluate(X_train, y_train, X_test, y_test):
+def build_model_and_evaluate(X_train, y_train, X_test, y_test, sc):
 
-    import ipdb
-    ipdb.set_trace()
-    
     regressor = Sequential()
     regressor.add(LSTM(units = 3, input_shape = (None, 1)))
     regressor.add(Dense(units = 1))
     regressor.compile(optimizer = 'adam', loss = 'mean_squared_error')
-    history = regressor.fit(X_train, y_train, epochs = 100, batch_size = 32, verbose=0)
+    history = regressor.fit(X_train,
+                            y_train,
+                            epochs = 100,
+                            batch_size = 32,
+                            verbose=0)
     
     inputs = np.array(X_test)
     inputs = np.reshape(inputs, (inputs.shape[0], inputs.shape[1], 1))
@@ -38,10 +38,10 @@ def build_model_and_evaluate(X_train, y_train, X_test, y_test):
     predicted_prices = sc.inverse_transform(predicted)
 
     rmse = math.sqrt(mean_absolute_error(y_test, predicted))
-    return regressor, sc, predicted_prices.reshape(len(predicted_prices),), rmse
+    return regressor, predicted_prices.reshape(len(predicted_prices),), rmse
 
     
-def validate(train, test):
+def validate(train, test, sc):
 
     X_train = []
     y_train = []
@@ -51,7 +51,7 @@ def validate(train, test):
         
     X_train, y_train = np.array(X_train), np.array(y_train)
     X_train = np.reshape(X_train, (X_train.shape[0], X_train.shape[1], 1))
-    
+
     # Test data
     X_test = []
     y_test = []
@@ -62,7 +62,7 @@ def validate(train, test):
     y_test = test.reshape(len(test),)
     X_test = np.array(X_test)
 
-    return build_model_and_evaluate(X_train, y_train, X_test, y_test)
+    return build_model_and_evaluate(X_train, y_train, X_test, y_test, sc)
 
 
 def predict(model, sc, full_data, train_end_date):
@@ -77,64 +77,71 @@ def predict(model, sc, full_data, train_end_date):
 
     X_pred = np.array(X_pred)
     pred = model.predict(X_pred)
-    import ipdb
-    ipdb.set_trace()
     prices = sc.inverse_transform(pred)
     return prices
         
 
-def walk_forward_validation(data_, train_end_date):
+def walk_forward_validation(full_data_, train_end_date):
+
+    data_ = full_data_[full_data_.date_ <= train_end_date]
 
     ## val model 1
     stop_date = train_end_date + datetime.timedelta(-150)
     train = data_[data_.date_ <= stop_date].iloc[:,2:3].values
     test = data_[data_.date_ > stop_date].iloc[:,2:3].values
+    sc1 = MinMaxScaler(feature_range = (0, 1))
 
-    train_ = sc.fit_transform(train)
-    test_ = sc.transform(test)
-    model1, sc1, predicted1, rmse1 = validate(train_, test_)
+    train_ = sc1.fit_transform(train)
+    test_ = sc1.transform(test)
+    
+    model1, predicted1, rmse1 = validate(train_, test_, sc1)
 
+    
     ## val model 2
     stop_date = train_end_date + datetime.timedelta(-120)
     train = data_[data_.date_ <= stop_date].iloc[:,2:3].values
     test = data_[data_.date_ > stop_date].iloc[:,2:3].values
+    sc2 = MinMaxScaler(feature_range = (0, 1))
 
-    train_ = sc.fit_transform(train)
-    test_ = sc.transform(test)
-    model2, sc2, predicted2, rmse2 = validate(train_, test_)
+    train_ = sc2.fit_transform(train)
+    test_ = sc2.transform(test)
+    model2, predicted2, rmse2 = validate(train_, test_, sc2)
     
 
     ## val model 3
     stop_date = train_end_date + datetime.timedelta(-90)
     train = data_[data_.date_ <= stop_date].iloc[:,2:3].values
     test = data_[data_.date_ > stop_date].iloc[:,2:3].values
+    sc3 = MinMaxScaler(feature_range = (0, 1))
 
-    train_ = sc.fit_transform(train)
-    test_ = sc.transform(test)
-    model3, sc3, predicted3, rmse3 = validate(train_, test_)
+    train_ = sc3.fit_transform(train)
+    test_ = sc3.transform(test)
+    model3, predicted3, rmse3 = validate(train_, test_, sc3)
     
 
     ## val model 4
     stop_date = train_end_date + datetime.timedelta(-60)
     train = data_[data_.date_ <= stop_date].iloc[:,2:3].values
     test = data_[data_.date_ > stop_date].iloc[:,2:3].values
+    sc4 = MinMaxScaler(feature_range = (0, 1))
 
-    train_ = sc.fit_transform(train)
-    test_ = sc.transform(test)
-    model4, sc4, predicted4, rmse4 = validate(train_, test_)
+    train_ = sc4.fit_transform(train)
+    test_ = sc4.transform(test)
+    model4, predicted4, rmse4 = validate(train_, test_, sc4)
     
 
     ## val model 5
     stop_date = train_end_date + datetime.timedelta(-30)
     train = data_[data_.date_ <= stop_date].iloc[:,2:3].values
     test = data_[data_.date_ > stop_date].iloc[:,2:3].values
+    sc5 = MinMaxScaler(feature_range = (0, 1))
 
-    train_ = sc.fit_transform(train)
-    test_ = sc.transform(test)
-    model5, sc5, predicted5, rmse5 = validate(train_, test_)
+    train_ = sc5.fit_transform(train)
+    test_ = sc5.transform(test)
+    model5, predicted5, rmse5 = validate(train_, test_, sc5)
     
     ## choose the model with the best rmse here
-    index = np.argmax([rmse1, rmse2, rmse3, rmse4, rmse5])
+    index = np.argmin([rmse1, rmse2, rmse3, rmse4, rmse5])
     predictions = [predicted1, predicted2, predicted3, predicted4, predicted5][index]
     model = [model1, model2, model3, model4, model5][index]
     scaler = [sc1, sc2, sc3, sc4, sc5][index]
