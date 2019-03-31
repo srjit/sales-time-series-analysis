@@ -2,4 +2,11 @@ Flask
 flask_restful
 pandas
 numpy
+gunicorn
+tensorflow
+keras
+sklearn
+datetime
+
+
 
