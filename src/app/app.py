@@ -41,8 +41,7 @@ def retrain():
     train_function = getattr(train, algorithm_name)
     print("Algorithm: ", algorithm_name)
     print("Function Train: ", train_function)
-    train_function(params)
-    
+    message = train_function(params)
     body = datautils.get_data_to_render()
     return flask.render_template('index.html', results=body)
 
@@ -50,7 +49,6 @@ def retrain():
 @app.route('/forecast',methods = ['POST', 'GET'])
 def forecast():
     return flask.render_template('forecast.html')
-
 
 
 if __name__ == "__main__":

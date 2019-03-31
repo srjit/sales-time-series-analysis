@@ -37,9 +37,8 @@ def lstm(params):
     modeltype = "lstm"
     learning_rate = params["learning_rate_lstm"]
     optimizer = params["optimizer"]
-    #train_end_date = params["train_end_date"]
 
-    print("########")
+    #format has to be YYYY/mm/dd
     train_end_date_ = params["train_end_date"]
     train_end_date = datetime.strptime(train_end_date_, "%Y/%m/%d")
 
@@ -83,5 +82,5 @@ def lstm(params):
 
         datautils.write_predictions(modeltype, store, pred_for_store_on_date)
 
-    pass
+    return "Success"
     
