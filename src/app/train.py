@@ -21,10 +21,8 @@ def arima(params):
     pass
 
 def xgboost(params):
-    n_jobs = params["n_jobs"]
     learning_rate = params["learning_rate"]
     max_depth = params["max_depth"]
-    min_child_weight = params["min_child_weight"]
     n_estimators = params["n_estimators"]
 
     train_end_date_ = params["train_end_date"]
