@@ -28,8 +28,33 @@ def xgboost(params):
     min_child_weight = params["min_child_weight"]
     n_estimators = params["n_estimators"]
 
-    ## retrain xgboost here write predictions to file system
+    train_end_date_ = params["train_end_date"]
+    train_end_date = datetime.strptime(train_end_date_, "%Y/%m/%d")
+
+    print("Train End Date", train_end_date)
+
+    data = datautils.get_data()
+    print("Data received:", data.head())
+
+
+    train = data[data.date_ <= train_end_date]
+    test = data[data.date_ > train_end_date]
     
+    ## retrain xgboost here write predictions to file system
+
+    ## <xgboostfile>.<train_function>(train,
+    ##                          learning_date,
+    ##                          max_depth,
+    ##                          min_child_weight,
+    ##                          n_estimators)
+
+
+    ## test on test data
+
+    ## write predictions
+    modeltype = "xgboost"
+    # for every unique store
+    #     datautils.write_predictions(modeltype, store, <prediction for store>)
     pass
 
 
