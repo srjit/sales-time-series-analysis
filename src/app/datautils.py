@@ -19,7 +19,6 @@ def get_data_to_render():
     return body
     
 
-
 def get_data():
 
     data = pd.read_csv("./data/Sales_Multiseries_training.csv")
@@ -27,6 +26,12 @@ def get_data():
     data = data.sort_values(by="date_")
     return data
 
+
+def get_data_fe():
+
+    data = pd.read_csv("./data/Sales_Multiseries_withFE.csv")
+    data["date_"] = pd.to_datetime(arg=data.Date)
+    return data
 
 
 def write_predictions(modeltype, storename, data):

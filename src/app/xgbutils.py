@@ -22,16 +22,15 @@ __email__ = "chirra.s@husky.neu.edu"
 __version__ = "0.0.1"
 
 
-def xgbWalkForwardValidation(maxDepth, learningRate, nEstimators):
+def xgbWalkForwardValidation(trainEndDate, maxDepth, learningRate, nEstimators):
 	# load data
 	df = pd.read_csv("https://raw.githubusercontent.com/chirras/D3-Data/master/Data%20Files/Sales_Multiseries_withFE.csv")
 	df.Date = pd.to_datetime(df.Date, format='%Y-%m-%d')
 	# Time series cross validation with time step of 2 months
-	startDate = pd.to_datetime('2014-01-01')
 	dictResult = {}
 	for i in range(3):
 	    # Dividing the data into train and test
-	    train, test = df[df.Date < startDate], df[(df.Date >= startDate) & (df.Date < startDate+relativedelta(months=2))]
+	    train, test = df[df.Date < trainEndDate], df[(df.Date >= trainEndDate) & (df.Date < trainEndDate+relativedelta(months=2))]
 	    # Dividing features and target for both train and test datasets
 	    X_train, Y_train = train.drop('Sales', axis=1), train.Sales
 	    X_test, Y_test = test.drop('Sales', axis=1), test.Sales

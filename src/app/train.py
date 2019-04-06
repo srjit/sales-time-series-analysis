@@ -20,8 +20,6 @@ def arima(params):
     ## retrain arima here and write predictions to file system
     pass
 
-
-
 def xgboost(params):
     n_jobs = params["n_jobs"]
     learning_rate = params["learning_rate"]
@@ -38,7 +36,7 @@ def xgboost(params):
     ## test = data[data.date_ > train_end_date]
     
     ## retrain xgboost here write predictions to file system
-    xgbutils.xgbWalkForwardValidation(max_depth, learning_rate, n_estimators)
+    xgbutils.xgbWalkForwardValidation(train_end_date, max_depth, learning_rate, n_estimators)
 
 
     ## test on test data
@@ -47,7 +45,7 @@ def xgboost(params):
     modeltype = "xgboost"
     # for every unique store
     #     datautils.write_predictions(modeltype, store, <prediction for store>)
-    pass
+    return "Success"
 
 
 def lstm(params):
