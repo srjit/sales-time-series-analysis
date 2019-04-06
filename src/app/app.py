@@ -26,7 +26,6 @@ def configure():
     body = datautils.get_data_to_render()
     return flask.render_template('configure.html', results=body)
 
-
 @app.route('/test')
 def test():
     data = {"data" : [("A",3),("B",2),("C",7),("D",10),("E",12),("F",9)]}

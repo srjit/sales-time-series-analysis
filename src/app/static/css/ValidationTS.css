@@ -1,0 +1,33 @@
+body{
+	width: 1000px;
+  margin: 0 auto;
+	background-color: #DDDDDD;
+	font-family: Lucida Console;
+	font-size: 18px;
+	padding: 5px 10px 10px 10px;
+}
+
+
+h1 {
+	color: #3D9970;
+}
+
+.chartPie {
+  margin: 20px;
+}
+
+.chartPie text {
+  font-family: "Verdana";
+  fill: #888;
+}
+
+.chartPie .name-text{
+  font-size: 1em;
+}
+
+.chartPie .value-text{
+  font-size: 3em;
+}
+
+
+

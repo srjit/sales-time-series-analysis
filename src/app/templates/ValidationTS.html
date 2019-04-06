@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+        <title>XGBoost Parameter tunning using Time Series Cross Validation</title>
+        <link href="{{ url_for('static', filename='css/ValidationTS.css') }}" rel="stylesheet">
+
+    </head>
+    <body>
+
+        <h1 align="center">XGBoost Parameter tunning using Time Series Cross Validation</h1>
+        <p id="par"> Performance of the XGBoost to to forecast the sales using time series cross validation. We are walk forward approach to evaluate the consistance of the model over different time periods. Please enter a value for parameters <strong> Max Depth: Maximum tree depth for base learners </strong>, <strong> Boosting Learning Rate </strong> and <strong> Number of trees to fit </strong> to see how the model performance changes. </p>
+
+        <p> Enter a value for Maxdepth:  </p>
+
+        <input type="number" id="maxDepth" name="maxDepth" min="3" max="8"> 
+        <br><br>
+
+        <p> Enter a value for learning rate: </p>
+
+        <input type="number" id="learningRate" name="learningRate" min="0.01" max="0.3"> 
+        <br><br>
+
+        <p> Enter a value for number of estimators to fit: </p>
+
+        <input type="number" id="nEstimators" name="nEstimators" min="2" max="1000"> 
+        <br><br>
+
+        <!-- <input type="submit" id="data", onclick="return displayData();"> -->
+        <button type="submit" onclick="displayData()">Run</button>
+        <br><br><br><br>
+
+        <script src="{{url_for('static', filename='js/d3.v4.min.js')}}"></script>
+        <script src="{{url_for('static', filename='js/ValidationTS.js')}}"></script>
+
+    </body>
+</html>
