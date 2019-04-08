@@ -4,6 +4,7 @@ import datautils
 from datetime import datetime
 import lstmutils
 import xgbutils
+import arimautils
 
 import pandas as pd
 
@@ -16,9 +17,16 @@ def arima(params):
     p = params["p"]
     q = params["q"]
     d = params["d"]
+    trainEndDate = params["train_end_date"]
+    trainEndDate = datetime.strptime(train_end_date_, "%Y/%m/%d")
+    
+    arimautils.arimaWalkForwardValidation(p,d,q,trainEndDate)
+    
+    arimautils.arimaforecast(p,d,q,trainEndDate,steps)
+    modeltype = "arima"
 
     ## retrain arima here and write predictions to file system
-    pass
+    return "Success"
 
 def xgboost(params):
     learning_rate = params["learning_rate"]
