@@ -55,7 +55,7 @@ function getTab(tabname){
 	    $('#home').removeClass('active');
 	    $('#forecast').addClass('active');
 	    drawSimpleChart();
-	    predictions = getForecastData("lstm", "Louisville");
+	    predictions = getForecastData("lstm", "Detroit");
 	    
 
 	    // data = [{"name":"Base Price","value":76819.40},

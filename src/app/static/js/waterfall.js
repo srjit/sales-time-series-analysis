@@ -44,11 +44,11 @@ function updateData2(data, calc){
     // create stacked remainder
     var insertStackedRemainderAfter = (dataName, newDataName) => {
         var index = data.findIndex((datum) => {
-	    return datum.name === dataName;
+	    return datum.Data === dataName;
         }); // data.findIndex
 
         return data.splice(index + 1, 0, {
-	    name: newDataName,
+	    Date: newDataName,
 	    start: data[index].end,
 	    end: 0,
 	    class: 'total',
@@ -126,7 +126,7 @@ function drawWaterFallChart(data, calc){
 
 
     x.domain(data.map((d) => {
-    	return d.name;
+    	return d.Date;
     }));
 
     y.domain([
@@ -155,7 +155,7 @@ function drawWaterFallChart(data, calc){
     	    return `bar ${ d.class }`;
     	})
     	.attr('transform', function(d){
-    	    return `translate(${ x(d.name) },0)`;
+    	    return `translate(${ x(d.Date) },0)`;
     	});
 
     bar
@@ -168,7 +168,7 @@ function drawWaterFallChart(data, calc){
     	})
     	.attr('width', x.bandwidth());
 
-    console.log(bar);
+//    console.log(bar);
     // // Add the value on each bar
     
     bar
