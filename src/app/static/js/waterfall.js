@@ -1,4 +1,4 @@
-function updateData(data){
+function updateData(data, calc){
     
     // create stacked remainder
     var insertStackedRemainderAfter = (dataName, newDataName) => {
@@ -15,6 +15,7 @@ function updateData(data){
     }; // insertStackedRemainder
 
     // retrieve total value
+
     let cumulative = 0;
 
     // Transform data (i.e., finding cumulative values and total) for easier charting
@@ -25,25 +26,73 @@ function updateData(data){
         return datum.class = datum.value >= 0 ? 'positive' : 'negative';
     }); // data.map
 
-    return data;
+    var data_ = []
+    data_[0] = data[0]
+    for(var i=1; i<data.length; i++){
+	var tmp = JSON.parse(JSON.stringify(data[i]));
+	data_.push(tmp)
+	data_[i].value = data[i].value - data[i-1].value
+    }
+
+    return data_;
 };
 
 
-function drawWaterFallChart(data){
 
-    var margin = { top: 80, right: 510, bottom: 30, left: 50 };
-//    var width = 960 - margin.left - margin.right;
+function updateData2(data, calc){
+    
+    // create stacked remainder
+    var insertStackedRemainderAfter = (dataName, newDataName) => {
+        var index = data.findIndex((datum) => {
+	    return datum.name === dataName;
+        }); // data.findIndex
+
+        return data.splice(index + 1, 0, {
+	    name: newDataName,
+	    start: data[index].end,
+	    end: 0,
+	    class: 'total',
+        }); // data.splice
+    }; // insertStackedRemainder
+
+    // retrieve total value
+
+    let cumulative = 0;
+
+    // Transform data (i.e., finding cumulative values and total) for easier charting
+    var data_ = []
+    data_[0] = data[0]
+    for(var i=1; i<data.length; i++){
+	var tmp = JSON.parse(JSON.stringify(data[i]));
+	data_.push(tmp)
+	data_[i].value = data[i].value - data[i-1].value
+    }
+
+
+    data_.map((datum) => {
+        datum.start = cumulative;
+        cumulative += datum.value;
+        datum.end = cumulative;
+        return datum.class = datum.value >= 0 ? 'positive' : 'negative';
+    }); 
+    
+
+    return data_;
+};
+
+
+function drawWaterFallChart(data, calc){
+
+    var margin = { top: 80, right: 30, bottom: 30, left: 50 };
     var width = 960 - margin.left - margin.right;
     var height = 500 - margin.top - margin.bottom;
     var padding = 0.4;
 
-    updateData(data);
+    data = updateData2(data, calc);
 
-    // change the 220 to adjust the width of the canvas - make it dynamic later
-    // a function of the number of values to predict
     var x = d3
 	.scaleBand()
-	.rangeRound([0, width + 220])
+	.rangeRound([0, width])
 	.padding(padding);
 
     var y = d3
@@ -65,21 +114,6 @@ function drawWaterFallChart(data){
 	.append('g')
 	.attr('transform', `translate(${ margin.left },${ margin.top })`);
 
-    chart.append("text")
-	.attr("x", width/2 + 80)
-	.attr("y", height + 27)
-        .attr("font-size", "14px")
-        .attr("font-family","Lato")
-	.text("Day");
-
-    chart.append("text")
-	.attr("x", -250)
-	.attr("transform", "rotate(-90)")
-	.attr("y", height - 430)
-        .attr("font-size", "14px")
-        .attr("font-family","Lato")
-	.text("Change from base price");
-    
     var eurFormat = (amount) => {
 	if (Math.abs(amount) > 1000000) {
 	    return `${ Math.round(amount / 1000000) }M€`;
@@ -92,7 +126,7 @@ function drawWaterFallChart(data){
 
 
     x.domain(data.map((d) => {
-    	return d.Date;
+    	return d.name;
     }));
 
     y.domain([
@@ -134,6 +168,7 @@ function drawWaterFallChart(data){
     	})
     	.attr('width', x.bandwidth());
 
+    console.log(bar);
     // // Add the value on each bar
     
     bar
