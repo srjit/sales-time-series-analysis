@@ -1,5 +1,5 @@
 function areachart(){
-  var div = d3.select("body").append("div") 
+  var div = d3.select("#viz2").append("div") 
       .attr("class", "tooltip")       
       .style("opacity", 0);
 
@@ -27,7 +27,7 @@ function areachart(){
 
   var stack = d3.layout.stack()
       .values(function(d) { return d.values; });
-  var svg = d3.select("body").append("svg")
+  var svg = d3.select("#viz2").append("svg")
       .attr("width", width + margin.left + margin.right)
       .attr("height", height + margin.top + margin.bottom)
     .append("g")
