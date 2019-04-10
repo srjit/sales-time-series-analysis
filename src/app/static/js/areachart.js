@@ -100,8 +100,8 @@ var browser = svg.selectAll(".browser")
                 .style("opacity", 0.5); 
         })
         .on("click", function(d) {
-          console.log("Onclick");
-          console.log(d.key)});
+          getForecastData("lstm",d.key);
+          });
 
 
 
