@@ -25,6 +25,7 @@ function show_hide_params(){
 
 
 function getForecastData(algorithm, store){
+    $("#water-chart").empty();
     $.ajax({url: "/getpredictions",
     	    data: {
     		"algorithm": algorithm
