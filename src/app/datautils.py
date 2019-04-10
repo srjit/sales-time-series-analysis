@@ -1,6 +1,7 @@
 import pandas as pd
 import os
 import csv
+import copy
 
 
 __author__ = "Sreejith Sreekumar"
@@ -60,3 +61,21 @@ def get_predictions_of_store(modeltype, store):
     
     
     
+def format_and_store_cv_data(cv_info):
+
+    validation = {}
+    for i in range(5):
+
+        key = "df_cv_" + str(i)
+
+        tmp_ = []
+        for store in cv_info.keys():
+            store_val_data = cv_info[store][i]
+            store_val_data["Store"] = store
+            tmp_.append(store_val_data)
+
+        tmp = pd.concat(tmp_, ignore_index=True, axis=0)
+        tmp_to_json = tmp.to_json(orient='records') 
+        validation[key] = copy.copy(tmp_to_json)
+
+    # serialize the 'validation' map here

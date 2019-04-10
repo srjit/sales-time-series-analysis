@@ -69,12 +69,12 @@ def lstm(params):
     data = datautils.get_data()
 
     print("Data received:", data.head())
-    results = lstmutils.do_walk_forward_validation_and_get_best_models(data,
-                                                                    train_end_date,
-                                                                    learning_rate,
-                                                                    optimizer)
-    predictions = {}
-    data = datautils.get_data()
+    results, cv_info = lstmutils.do_walk_forward_validation_and_get_best_models(data,
+                                                                                train_end_date,
+                                                                                learning_rate,
+                                                                                optimizer)
+
+    datautils.format_and_store_cv_data(cv_info)
 
     for result in results:
 

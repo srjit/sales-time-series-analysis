@@ -38,7 +38,7 @@ def build_model_and_evaluate(X_train, y_train, X_test, y_test, sc):
     predicted_prices = sc.inverse_transform(predicted)
 
     rmse = math.sqrt(mean_absolute_error(y_test, predicted))
-    return regressor, predicted_prices.reshape(len(predicted_prices),), rmse
+    return regressor, y_test, predicted_prices.reshape(len(predicted_prices),), rmse
 
     
 def validate(train, test, sc):
@@ -83,6 +83,8 @@ def predict(model, sc, full_data, train_end_date):
 
 def walk_forward_validation(full_data_, train_end_date):
 
+    cross_validation_info = []
+
     data_ = full_data_[full_data_.date_ <= train_end_date]
 
     ## val model 1
@@ -93,9 +95,13 @@ def walk_forward_validation(full_data_, train_end_date):
 
     train_ = sc1.fit_transform(train)
     test_ = sc1.transform(test)
-    
-    model1, predicted1, rmse1 = validate(train_, test_, sc1)
 
+    model1, actual1, predicted1, rmse1 = validate(train_, test_, sc1)
+
+    cv1 = pd.concat([ pd.Series(data_[data_.date_ > stop_date].Date.tolist(),
+                                name="Date"), pd.Series(actual1, name="actual"),
+                      pd.Series(predicted1, name="predicted")], axis=1)
+    
     
     ## val model 2
     stop_date = train_end_date + datetime.timedelta(-120)
@@ -105,7 +111,12 @@ def walk_forward_validation(full_data_, train_end_date):
 
     train_ = sc2.fit_transform(train)
     test_ = sc2.transform(test)
-    model2, predicted2, rmse2 = validate(train_, test_, sc2)
+    model2, actual2, predicted2, rmse2 = validate(train_, test_, sc2)
+
+    cv2 = pd.concat([ pd.Series(data_[data_.date_ > stop_date].Date.tolist(),
+                                name="Date"), pd.Series(actual2, name="actual"),
+                      pd.Series(predicted2, name="predicted")], axis=1)
+
     
 
     ## val model 3
@@ -116,7 +127,11 @@ def walk_forward_validation(full_data_, train_end_date):
 
     train_ = sc3.fit_transform(train)
     test_ = sc3.transform(test)
-    model3, predicted3, rmse3 = validate(train_, test_, sc3)
+    model3, actual3, predicted3, rmse3 = validate(train_, test_, sc3)
+
+    cv3 = pd.concat([ pd.Series(data_[data_.date_ > stop_date].Date.tolist(),
+                                name="Date"), pd.Series(actual3, name="actual"),
+                      pd.Series(predicted3, name="predicted")], axis=1)
     
 
     ## val model 4
@@ -127,7 +142,12 @@ def walk_forward_validation(full_data_, train_end_date):
 
     train_ = sc4.fit_transform(train)
     test_ = sc4.transform(test)
-    model4, predicted4, rmse4 = validate(train_, test_, sc4)
+    model4, actual4, predicted4, rmse4 = validate(train_, test_, sc4)
+
+    cv4 = pd.concat([ pd.Series(data_[data_.date_ > stop_date].Date.tolist(),
+                                name="Date"), pd.Series(actual4, name="actual"),
+                      pd.Series(predicted4, name="predicted")], axis=1)
+    
     
 
     ## val model 5
@@ -138,7 +158,12 @@ def walk_forward_validation(full_data_, train_end_date):
 
     train_ = sc5.fit_transform(train)
     test_ = sc5.transform(test)
-    model5, predicted5, rmse5 = validate(train_, test_, sc5)
+    model5, actual5, predicted5, rmse5 = validate(train_, test_, sc5)
+
+    cv5 = pd.concat([ pd.Series(data_[data_.date_ > stop_date].Date.tolist(),
+                                name="Date"), pd.Series(actual5, name="actual"),
+                      pd.Series(predicted5, name="predicted")], axis=1)
+    
     
     ## choose the model with the best rmse here
     index = np.argmin([rmse1, rmse2, rmse3, rmse4, rmse5])
@@ -146,8 +171,10 @@ def walk_forward_validation(full_data_, train_end_date):
     model = [model1, model2, model3, model4, model5][index]
     scaler = [sc1, sc2, sc3, sc4, sc5][index]
 
+    cv_results = [cv1, cv2, cv3, cv4, cv5]
+
     ## write predictions for each day
-    return model, scaler, predictions
+    return model, scaler, predictions, cv_results
     
        
 
@@ -159,21 +186,25 @@ def do_walk_forward_validation_and_get_best_models(data,
 
     stores = data.Store.unique()
     result = []
+
+    cv_results = {}
     
-    for store in stores:
+    for store in stores[:3]:
+
         store_res = {}
         store_res["store"] = store
         
         print("Training model for store: ", store)
         data_ = data[data.Store == store]
-        model, scaler, predictions = walk_forward_validation(data_, train_end_date)
+        model, scaler, predictions, cv_results_store  = walk_forward_validation(data_, train_end_date)
 
         store_res["model"] = model
         store_res["scaler"] = scaler
         store_res["test_predictions"] = predictions
 
         result.append(store_res)
+        cv_results[store] = cv_results_store
 
-    return result
+    return result, cv_results
         
 
