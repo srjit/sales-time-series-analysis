@@ -57,7 +57,7 @@ function getTab(tabname){
 	    $('#forecast').addClass('active');
 	    drawSimpleChart();
 	    areachart();
-	    predictions = getForecastData("lstm", "Detroit");
+	    //predictions = getForecastData("lstm", "Detroit");
 	    
 
 	    // data = [{"name":"Base Price","value":76819.40},
@@ -78,5 +78,4 @@ function getTab(tabname){
 
 function showpred(){
     var algorithm = $('#predalgorithm').val();
-    alert("Displaying predictions from: " + algorithm);
 }
