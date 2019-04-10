@@ -55,6 +55,7 @@ function getTab(tabname){
 	    $('#home').removeClass('active');
 	    $('#forecast').addClass('active');
 	    drawSimpleChart();
+	    areachart();
 	    predictions = getForecastData("lstm", "Detroit");
 	    
 
