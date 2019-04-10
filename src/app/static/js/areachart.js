@@ -100,7 +100,10 @@ var browser = svg.selectAll(".browser")
                 .style("opacity", 0.5); 
         })
         .on("click", function(d) {
-          getForecastData("lstm",d.key);
+          var algorithm =$('#predalgorithm').val();
+          console.log(algorithm)
+          getForecastData(algorithm,d.key);
+          
           });
 
 
