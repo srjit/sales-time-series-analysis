@@ -34,9 +34,10 @@ function getForecastData(algorithm, store){
     	    success: function(result){
 		data = $.parseJSON(result)
 		data_ = $.parseJSON(data[store])
-
-		console.log(data_)
 		drawWaterFallChart(data_.slice(1, 10), true);
+		var location_text = "Location: " + store
+		$('#location').text(location_text);
+		$('#forecast-div').show();
     	    }
     	   });
 };

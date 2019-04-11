@@ -101,7 +101,7 @@ var browser = svg.selectAll(".browser")
         })
         .on("click", function(d) {
           var algorithm =$('#predalgorithm').val();
-          console.log(algorithm)
+//          console.log(algorithm)
           getForecastData(algorithm,d.key);
           
           });
