@@ -26,7 +26,7 @@ var area = d3.area()
     .y0(function(d) { return y(d[0]); })
     .y1(function(d) { return y(d[1]); });
 
-var svg = d3.select("body").append("svg")
+var svg = d3.select("#viz2").append("svg")
     .attr("width", width + margin.left + margin.right)
     .attr("height", height + margin.top + margin.bottom)
   .append("g")
