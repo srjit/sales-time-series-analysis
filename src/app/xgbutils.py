@@ -59,16 +59,18 @@ def xgbWalkForwardValidation(trainEndDate, maxDepth, learningRate, nEstimators):
 
 
 
-
 def xgbforecast(trainEndDate, maxDepth, learningRate, nEstimators):
 	# Reading the data from csv
 	df_sales = pd.read_csv("./data/Sales_Multiseries_withFE.csv")
 	# Formatting Date
-	df_sales.Date = pd.to_datetime(df_sales.Date, format='%m/%d/%y')
+	df_sales.Date = pd.to_datetime(df_sales.Date)
 	trainEndDate = pd.to_datetime(trainEndDate)
+	maxDepth = int(maxDepth)
+	learningRate = float(learningRate)
+	nEstimators = int(nEstimators)
 	modeltype="xgboost"
 	# Dividing the data into train and test
-	train, test = df[df.Date < trainEndDate], df[(df.Date >= trainEndDate) & (df.Date < trainEndDate+relativedelta(months=2))]
+	train, test = df_sales[df_sales.Date < trainEndDate], df_sales[(df_sales.Date >= trainEndDate) & (df_sales.Date < trainEndDate+relativedelta(months=2))]
 	# Dividing features and target for both train and test datasets
 	X_train, Y_train = train.drop('Sales', axis=1), train.Sales
 	X_test, Y_test = test.drop('Sales', axis=1), test.Sales
@@ -86,13 +88,11 @@ def xgbforecast(trainEndDate, maxDepth, learningRate, nEstimators):
 	# Prediction on test data using XGBoost
 	y_pred = model.predict(X_test_scaled)
 	df_pred = pd.DataFrame({'Date': test.Date, "value": y_pred})
-	stores=list(df.Store.unique())
+	stores=list(df_sales.Store.unique())
 	for s in stores:
 		write_location = "predictions/" + modeltype + "/" + s + ".csv"
 		#write_location = "predictions/samplenew.csv" 
-		df_pred[df_sales.Store==s].to_csv(write_location, index=False,sep='	', mode='a')
-
-
+		df_pred[df_sales.Store==s].to_csv(write_location, index=False)
 
 
 
