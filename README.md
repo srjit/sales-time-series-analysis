@@ -19,13 +19,13 @@ pip install -r requirements.txt
 
 ### Retraining Models
 ---
-	- ARIMA
-    - XGBoost
-	- LSTM
+ - ARIMA
+ - XGBoost
+ - LSTM
 
 ### Visualizing Model Performace
 ---
-	- Pie Chart | Line Chart
+ - Pie Chart | Line Chart
  
 ### Area Plot for Visualizing Historic Data
 ---
