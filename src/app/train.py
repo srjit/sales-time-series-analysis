@@ -38,19 +38,9 @@ def xgboost(params):
 
     print("Train End Date", train_end_date)
 
-    ## train = data[data.date_ <= train_end_date]
-    ## test = data[data.date_ > train_end_date]
-    
     ## retrain xgboost here write predictions to file system
-    xgbutils.xgbWalkForwardValidation(train_end_date, max_depth, learning_rate, n_estimators)
+    xgbutils.xgbforecast(train_end_date, max_depth, learning_rate, n_estimators)
 
-
-    ## test on test data
-
-    ## write predictions
-    modeltype = "xgboost"
-    # for every unique store
-    #     datautils.write_predictions(modeltype, store, <prediction for store>)
     return "Success"
 
 
