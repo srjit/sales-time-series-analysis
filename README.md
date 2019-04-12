@@ -20,9 +20,24 @@ pip install -r requirements.txt
 ### Retraining Models
 ---
 
+Following are the descriptions of the hyperparameters for each model integrated into the application
+
 - ARIMA
+
+	* p
+	* q
+	* d
+	
 - XGBoost
+
+	* learning_rate
+	* max_depth
+    * n_estimators
+  
 - LSTM
+
+	* learning_rate
+	* optimizer
 
 ### Visualizing Model Performace
 ---
@@ -36,4 +51,8 @@ pip install -r requirements.txt
 ---
 	
  
+### Running the app locally
+---
+ 
 
+### Deployment
