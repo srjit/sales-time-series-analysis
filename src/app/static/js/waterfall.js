@@ -114,6 +114,9 @@ function drawWaterFallChart(data, calc){
 	.append('g')
 	.attr('transform', `translate(${ margin.left },${ margin.top })`);
 
+    // var width = 960
+    // var height = 500
+
     var eurFormat = (amount) => {
 	if (Math.abs(amount) > 1000000) {
 	    return `${ Math.round(amount / 1000000) }M€`;
@@ -168,9 +171,6 @@ function drawWaterFallChart(data, calc){
     	})
     	.attr('width', x.bandwidth());
 
-//    console.log(bar);
-    // // Add the value on each bar
-    
     bar
     	.append('text')
     	.attr('x', x.bandwidth() / 2)
@@ -211,8 +211,6 @@ function drawWaterFallChart(data, calc){
     	    var percentage = d3.format('.1f')(((100 * (d.end - d.start)) / d.start));
     	    return `${ percentage }%`;
     	});
-
-    // // 	// Add the connecting line between each bar
     bar
     	.filter((d, i) => {
     	    return i !== data.length - 1;
@@ -228,4 +226,24 @@ function drawWaterFallChart(data, calc){
     	    return d.class === 'total' ? y(d.start) : y(d.end);
     	});
 
+
+    chart.append("text")
+            .attr("text-anchor", "middle")  
+	.attr("transform", "translate("+ (padding/2 - 42) +","+(height/2)+")rotate(-90)")
+	.style("font-size","12px")
+	.style("font","Lato")
+        .text("Price Predicted (USD)");    
+
+    
+    chart
+      .append("text")             
+      .attr("transform",
+            "translate(" + (width/2) + " ," + 
+                           (height + 25) + ")")
+	.style("text-anchor", "middle")
+    .style("font-size","12px")
+    .style("font","Lato")
+      .text("Date");
+    
+    
 }
