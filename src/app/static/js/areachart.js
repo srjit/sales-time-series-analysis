@@ -91,10 +91,7 @@ var browser = svg.selectAll(".browser")
                 .style("top", (d3.event.pageY - 28) + "px");  
             })          
         .on("mouseout", function(d) { 
-            d3.select(this)
-            .transition()  
-            .duration(250)
-            .style("fill", function(d) { return color(d.key); }).attr('fill-opacity', 0.1);
+            d3.select(this).style('fill-opacity', 0.5);
             div.transition()    
                 .duration(500)    
                 .style("opacity", 0.5); 
@@ -128,6 +125,24 @@ var browser = svg.selectAll(".browser")
   svg.append("g")
       .attr("class", "y axis")
       .call(yAxis);
+    
+
+
+  svg.append("text")
+            .attr("text-anchor", "middle")  
+  .attr("transform", "translate("+ (0.6/2 - 55) +","+(height/2)+")rotate(-90)")
+  .style("font-size","12px")
+  .style("font","Lato")
+        .text("Monthly Average Sales(USD)"); 
+    
+  svg.append("text")             
+      .attr("transform",
+            "translate(" + (width/2) + " ," + 
+                           (height + 25) + ")")
+  .style("text-anchor", "middle")
+  .style("font-size","12px")
+  .style("font","Lato")
+  .text("Date");
 
 
 
