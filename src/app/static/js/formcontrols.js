@@ -44,6 +44,7 @@ function getForecastData(algorithm, store){
 
 
 function getValidationsData(algorithm){
+    console.log("This must print");
     $("#viz1").empty();
     $.ajax({url: "/getvalidation",
     	    data: {
@@ -52,7 +53,7 @@ function getValidationsData(algorithm){
     	    contentType: 'application/json;charset=UTF-8',
     	    success: function(result){
 		data = $.parseJSON(result)
-		displayData(data);
+		displayData(result);
     	    }
     	});
 };
@@ -71,8 +72,10 @@ function getTab(tabname){
 	    $('.container-fluid').html(result);
 	    $('#home').removeClass('active');
 	    $('#forecast').addClass('active');
-	    displayData();
+	    //displayData();
 	    areachart();
+	    var algorithm = $('#predalgorithm').val();
+	    getValidationsData(algorithm)
 	    //predictions = getForecastData("lstm", "Detroit");
 	    
 

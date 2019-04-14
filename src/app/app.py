@@ -68,7 +68,7 @@ def getvalidation():
     algorithm = request.args['algorithm']
     print(algorithm)
     data = datautils.get_validationData(algorithm)
-    return data
+    return json.dumps(data)
 
 
 if __name__ == "__main__":
