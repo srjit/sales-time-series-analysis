@@ -119,8 +119,8 @@ def walk_forward_validation(full_data_, train_end_date):
     model2, actual2, predicted2, rmse2 = validate(train_, test_, sc2)
 
     cv2 = pd.concat([ pd.Series(full_data_[(full_data_.date_ > train_end_date) & (full_data_.date_ < stop_date)].date_.dt.strftime('%Y-%m-%d').tolist(),
-                                name="Date"), pd.Series(actual2, name="actual"),
-                      pd.Series(predicted2, name="predicted")], axis=1)
+                                name="Date"), pd.Series(actual2, name="Y_actual"),
+                      pd.Series(predicted2, name="Y_pred")], axis=1)
 
     
 
@@ -135,8 +135,8 @@ def walk_forward_validation(full_data_, train_end_date):
     model3, actual3, predicted3, rmse3 = validate(train_, test_, sc3)
 
     cv3 = pd.concat([ pd.Series(full_data_[(full_data_.date_ > train_end_date) & (full_data_.date_ < stop_date)].date_.dt.strftime('%Y-%m-%d').tolist(),
-                                name="Date"), pd.Series(actual3, name="actual"),
-                      pd.Series(predicted3, name="predicted")], axis=1)
+                                name="Date"), pd.Series(actual3, name="Y_actual"),
+                      pd.Series(predicted3, name="Y_pred")], axis=1)
     
 
     ## val model 4

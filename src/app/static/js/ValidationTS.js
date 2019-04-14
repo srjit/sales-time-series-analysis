@@ -200,22 +200,23 @@ function displayData(data) {
 	lineChart.append("text")
         .attr("text-anchor", "middle")  
         .attr("transform", "translate("+ (margin.left/2) +","+(height/2)+")rotate(-90)")  
-        .style("font-size", "16px") 
-        .style("font-family", "Verdana")
+        .style("font-size", "12px") 
+        .style("font-family", "Lato")
         .text("Sales");
 	
     lineChart.append("text")
         .attr("text-anchor", "middle")  
         .attr("transform", "translate("+ (lineWidth/2) +","+(height-margin.bottom/5)+")")  
-        .style("font-size", "16px") 
-        .style("font-family", "Verdana")
+        .style("font-size", "12px") 
+        .style("font-family", "Lato")
         .text("Date");       
 	
 	lineChart.append("text")
 		.attr("class", "cv-text")
      	.attr("transform", "translate("+ (lineWidth/2) + "," +((margin.top))+")")
         .attr("text-anchor", "middle")  
-        .style("font-size", "1.1em") 
+        .style("font-size", "1.1em")
+	.style("font-family", "Lato")
         .text("Sales Prediction CV - Actual vs Predicted");
 
 
@@ -293,7 +294,8 @@ function displayData(data) {
 	 
 	      g.append("text")
 	        .attr("class", "name-text")
-	        .text(`${dataP[i].Store}`)
+	            .text(`${dataP[i].Store}`)
+		    .attr('font-family', 'Lato')
 	        .attr('text-anchor', 'middle')
 	        .attr('dy', '-1.2em');
 	  
@@ -343,13 +345,13 @@ function displayData(data) {
 	  		xScale.domain(d3.extent(dataCV1, function(d) { return d.Date; }));
   			yScale.domain([0, d3.max(dataCV1, function(d) { return d.Y_actual; })]);
 	
-			lineChart.append("g")
-			  .attr("transform", `translate(0, ${height/3-margin.bottom})`)
-			  .call(d3.axisBottom().scale(xScale));
+			// lineChart.append("g")
+			//   .attr("transform", `translate(0, ${height/3-margin.bottom})`)
+			//   .call(d3.axisBottom().scale(xScale));
 		
-			lineChart.append("g")
-			  .attr("transform", `translate(${margin.left+40},0)`)
-			  .call(d3.axisLeft().scale(yScale));
+			// lineChart.append("g")
+			//   .attr("transform", `translate(${margin.left+40},0)`)
+			//   .call(d3.axisLeft().scale(yScale));
 			
 			var line1 = d3.line()
 						.x(function(d) { return xScale(d.Date); })
@@ -390,13 +392,13 @@ function displayData(data) {
 			xScale.domain(d3.extent(dataCV2, function(d) { return d.Date; }));
   			yScale.domain([0, d3.max(dataCV2, function(d) { return d.Y_actual; })]);
 	
-  			lineChart.append("g")
-			  .attr("transform", `translate(0, ${2*height/3-margin.bottom})`)
-			  .call(d3.axisBottom().scale(xScale));
+  			// lineChart.append("g")
+			//   .attr("transform", `translate(0, ${2*height/3-margin.bottom})`)
+			//   .call(d3.axisBottom().scale(xScale));
 		
-			lineChart.append("g")
-			  .attr("transform", `translate(${margin.left+40},0)`)
-			  .call(d3.axisLeft().scale(yScale));
+			// lineChart.append("g")
+			//   .attr("transform", `translate(${margin.left+40},0)`)
+			//   .call(d3.axisLeft().scale(yScale));
 	
 			lineChart.append("path")
 					      .datum(dataCV2.filter(function(d) { return d.Store == s }))
@@ -404,7 +406,7 @@ function displayData(data) {
 				    		.attr("class", "path2")
 				    		.attr("fill", "none")
 							.attr("stroke", "steelblue")
-							.attr("stroke-width", 2.5); 
+						.attr("stroke-width", 2.5); 
 	
 			lineChart.append("path")
 					      .datum(dataCV2.filter(function(d) { return d.Store == s }))
@@ -427,13 +429,13 @@ function displayData(data) {
 			xScale.domain(d3.extent(dataCV3, function(d) { return d.Date; }));
   			yScale.domain([0, d3.max(dataCV3, function(d) { return d.Y_actual; })]);
 	
-  			lineChart.append("g")
-			  .attr("transform", `translate(0, ${height-margin.bottom})`)
-			  .call(d3.axisBottom().scale(xScale));
+  			// lineChart.append("g")
+			//   .attr("transform", `translate(0, ${height-margin.bottom})`)
+			//   .call(d3.axisBottom().scale(xScale));
 		
-			lineChart.append("g")
-			  .attr("transform", `translate(${margin.left+40},0)`)
-			  .call(d3.axisLeft().scale(yScale));
+			// lineChart.append("g")
+			//   .attr("transform", `translate(${margin.left+40},0)`)
+			//   .call(d3.axisLeft().scale(yScale));
 	
 			lineChart.append("path")
 					      .datum(dataCV3.filter(function(d) { return d.Store == s }))
@@ -455,13 +457,14 @@ function displayData(data) {
 	
 	pieChart.append("g")
             .attr("transform", "translate("+ (margin.left-25) + "," +((margin.top+50))+")")
-            .append("text").text("Average Sales across different Locations")
+        .append("text").text("Average Sales across different Locations")
+	.attr("font-family","Lato")
             .attr("class", "title")
 	
   	g.append('text')
  	.attr('text-anchor', 'middle')
 	.style("font","Lato")
-  	.attr('fill', '#888')
+//  	.attr('fill', '#888')
  	.attr('dy', '.35em')
  	.text(text);
 	
