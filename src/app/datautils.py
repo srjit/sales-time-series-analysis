@@ -78,7 +78,7 @@ def get_predictions_of_store(modeltype, store):
 def format_and_store_cv_data(cv_info):
 
     validation = {}
-    for i in range(5):
+    for i in range(3):
 
         key = "df_cv_" + str(i)
 

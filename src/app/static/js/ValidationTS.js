@@ -461,7 +461,6 @@ function displayData(data) {
   	g.append('text')
  	.attr('text-anchor', 'middle')
 	.style("font","Lato")
- 	//.attr('font-family', 'Verdana')
   	.attr('fill', '#888')
  	.attr('dy', '.35em')
  	.text(text);
@@ -480,7 +479,6 @@ function displayData(data) {
       .style("text-anchor", "middle")
       .text(function(d, i) { return dataP[i].Store; });
 
-	//});
 }
 
 

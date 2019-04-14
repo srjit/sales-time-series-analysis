@@ -91,92 +91,92 @@ def walk_forward_validation(full_data_, train_end_date):
     cross_validation_info = []
 
     data_ = full_data_[full_data_.date_ <= train_end_date]
+    stop_date = train_end_date + datetime.timedelta(+30)
 
     ## val model 1
-    stop_date = train_end_date + datetime.timedelta(-150)
     train = data_[data_.date_ <= stop_date].iloc[:,2:3].values
-    test = data_[data_.date_ > stop_date].iloc[:,2:3].values
+    test = full_data_[(full_data_.date_ > train_end_date) & (full_data_.date_ < stop_date)].iloc[:,2:3].values
     sc1 = MinMaxScaler(feature_range = (0, 1))
 
     train_ = sc1.fit_transform(train)
     test_ = sc1.transform(test)
 
     model1, actual1, predicted1, rmse1 = validate(train_, test_, sc1)
-
-    cv1 = pd.concat([ pd.Series(data_[data_.date_ > stop_date].date_.dt.strftime('%Y-%m-%d').tolist(),
+    cv1 = pd.concat([ pd.Series(full_data_[(full_data_.date_ > train_end_date) & (full_data_.date_ < stop_date)].date_.dt.strftime('%Y-%m-%d').tolist(),
                                 name="Date"), pd.Series(actual1, name="Y_actual"),
                       pd.Series(predicted1, name="Y_pred")], axis=1)
 
     
     ## val model 2
-    stop_date = train_end_date + datetime.timedelta(-120)
+    stop_date = train_end_date + datetime.timedelta(+60)
     train = data_[data_.date_ <= stop_date].iloc[:,2:3].values
-    test = data_[data_.date_ > stop_date].iloc[:,2:3].values
+    test = full_data_[(full_data_.date_ > train_end_date) & (full_data_.date_ < stop_date)].iloc[:,2:3].values
     sc2 = MinMaxScaler(feature_range = (0, 1))
+
 
     train_ = sc2.fit_transform(train)
     test_ = sc2.transform(test)
     model2, actual2, predicted2, rmse2 = validate(train_, test_, sc2)
 
-    cv2 = pd.concat([ pd.Series(data_[data_.date_ > stop_date].Date.tolist(),
+    cv2 = pd.concat([ pd.Series(full_data_[(full_data_.date_ > train_end_date) & (full_data_.date_ < stop_date)].date_.dt.strftime('%Y-%m-%d').tolist(),
                                 name="Date"), pd.Series(actual2, name="actual"),
                       pd.Series(predicted2, name="predicted")], axis=1)
 
     
 
     ## val model 3
-    stop_date = train_end_date + datetime.timedelta(-90)
+    stop_date = train_end_date + datetime.timedelta(+90)
     train = data_[data_.date_ <= stop_date].iloc[:,2:3].values
-    test = data_[data_.date_ > stop_date].iloc[:,2:3].values
+    test = full_data_[(full_data_.date_ > train_end_date) & (full_data_.date_ < stop_date)].iloc[:,2:3].values
     sc3 = MinMaxScaler(feature_range = (0, 1))
 
     train_ = sc3.fit_transform(train)
     test_ = sc3.transform(test)
     model3, actual3, predicted3, rmse3 = validate(train_, test_, sc3)
 
-    cv3 = pd.concat([ pd.Series(data_[data_.date_ > stop_date].Date.tolist(),
+    cv3 = pd.concat([ pd.Series(full_data_[(full_data_.date_ > train_end_date) & (full_data_.date_ < stop_date)].date_.dt.strftime('%Y-%m-%d').tolist(),
                                 name="Date"), pd.Series(actual3, name="actual"),
                       pd.Series(predicted3, name="predicted")], axis=1)
     
 
     ## val model 4
-    stop_date = train_end_date + datetime.timedelta(-60)
-    train = data_[data_.date_ <= stop_date].iloc[:,2:3].values
-    test = data_[data_.date_ > stop_date].iloc[:,2:3].values
-    sc4 = MinMaxScaler(feature_range = (0, 1))
+    # stop_date = train_end_date + datetime.timedelta(-60)
+    # train = data_[data_.date_ <= stop_date].iloc[:,2:3].values
+    # test = data_[data_.date_ > stop_date].iloc[:,2:3].values
+    # sc4 = MinMaxScaler(feature_range = (0, 1))
 
-    train_ = sc4.fit_transform(train)
-    test_ = sc4.transform(test)
-    model4, actual4, predicted4, rmse4 = validate(train_, test_, sc4)
+    # train_ = sc4.fit_transform(train)
+    # test_ = sc4.transform(test)
+    # model4, actual4, predicted4, rmse4 = validate(train_, test_, sc4)
 
-    cv4 = pd.concat([ pd.Series(data_[data_.date_ > stop_date].Date.tolist(),
-                                name="Date"), pd.Series(actual4, name="actual"),
-                      pd.Series(predicted4, name="predicted")], axis=1)
+    # cv4 = pd.concat([ pd.Series(data_[data_.date_ > stop_date].Date.tolist(),
+    #                             name="Date"), pd.Series(actual4, name="actual"),
+    #                   pd.Series(predicted4, name="predicted")], axis=1)
     
     
 
-    ## val model 5
-    stop_date = train_end_date + datetime.timedelta(-30)
-    train = data_[data_.date_ <= stop_date].iloc[:,2:3].values
-    test = data_[data_.date_ > stop_date].iloc[:,2:3].values
-    sc5 = MinMaxScaler(feature_range = (0, 1))
+    # ## val model 5
+    # stop_date = train_end_date + datetime.timedelta(-30)
+    # train = data_[data_.date_ <= stop_date].iloc[:,2:3].values
+    # test = data_[data_.date_ > stop_date].iloc[:,2:3].values
+    # sc5 = MinMaxScaler(feature_range = (0, 1))
 
-    train_ = sc5.fit_transform(train)
-    test_ = sc5.transform(test)
-    model5, actual5, predicted5, rmse5 = validate(train_, test_, sc5)
+    # train_ = sc5.fit_transform(train)
+    # test_ = sc5.transform(test)
+    # model5, actual5, predicted5, rmse5 = validate(train_, test_, sc5)
 
-    cv5 = pd.concat([ pd.Series(data_[data_.date_ > stop_date].Date.tolist(),
-                                name="Date"), pd.Series(actual5, name="actual"),
-                      pd.Series(predicted5, name="predicted")], axis=1)
+    # cv5 = pd.concat([ pd.Series(data_[data_.date_ > stop_date].Date.tolist(),
+    #                             name="Date"), pd.Series(actual5, name="actual"),
+    #                   pd.Series(predicted5, name="predicted")], axis=1)
     
     
     ## choose the model with the best rmse here
-    index = np.argmin([rmse1, rmse2, rmse3, rmse4, rmse5])
-    predictions = [predicted1, predicted2, predicted3, predicted4, predicted5][index]
-    model = [model1, model2, model3, model4, model5][index]
-    scaler = [sc1, sc2, sc3, sc4, sc5][index]
+    index = np.argmin([rmse1, rmse2, rmse3])
+    predictions = [predicted1, predicted2, predicted3][index]
+    model = [model1, model2, model3][index]
+    scaler = [sc1, sc2, sc3][index]
 
-    cv_results = [cv1, cv2, cv3, cv4, cv5]
+    cv_results = [cv1, cv2, cv3]
 
     ## write predictions for each day
     return model, scaler, predictions, cv_results
