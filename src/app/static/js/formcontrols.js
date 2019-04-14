@@ -43,6 +43,21 @@ function getForecastData(algorithm, store){
 };
 
 
+function getValidationsData(algorithm){
+    $("#viz1").empty();
+    $.ajax({url: "/getvalidation",
+    	    data: {
+    		"algorithm": algorithm
+    	    },
+    	    contentType: 'application/json;charset=UTF-8',
+    	    success: function(result){
+		data = $.parseJSON(result)
+		displayData(data);
+    	    }
+    	});
+};
+
+
 function getTab(tabname){
     if(tabname == 'home'){
 	$.ajax({url: "/configure", success: function(result){
@@ -56,7 +71,7 @@ function getTab(tabname){
 	    $('.container-fluid').html(result);
 	    $('#home').removeClass('active');
 	    $('#forecast').addClass('active');
-	    drawSimpleChart();
+	    displayData();
 	    areachart();
 	    //predictions = getForecastData("lstm", "Detroit");
 	    

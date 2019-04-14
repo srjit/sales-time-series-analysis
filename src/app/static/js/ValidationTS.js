@@ -1,26 +1,24 @@
-
-
-
 function displayData() {
 
 	var margin = { top: 20, right: 20, bottom: 40, left: 50 };
 	var width = 470 - margin.left - margin.right;
     var height = 680 - margin.top - margin.bottom;
     var gap = 10;
-
-	var path = "./data/cvData.json";
-	console.log(path);
+    console.log("Yes");
+	// var path = "./Validation/xgboost/cvData.json";
+	var url = "https://raw.githubusercontent.com/chirras/D3-Data/master/Data%20Files/cvData.json";
+	console.log(url);
 
 	var parseDate = d3.timeParse("%Y-%m-%d");
 
-	var div = d3.select("body").append("div");
+	d3.json(url, function(error, data) {
 
-	d3.json(path, function(error, data) {
-
-		if (error) return console.warn(error);
+		//if (error) return console.warn(error);
+		//data = JSON.parse(data);
 	    console.log(data);
+	    //console.log(data[0].df_cv_0);
 
-	    var svg = d3.select("body")
+	    var svg = d3.select("div#viz1")
     			.append("svg")
     			.attr("class", "mainsvg")
     			.attr("height", height)

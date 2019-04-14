@@ -1,33 +1,34 @@
-body{
-	width: 1000px;
-  margin: 0 auto;
-	background-color: #DDDDDD;
-	font-family: Lucida Console;
-	font-size: 18px;
-	padding: 5px 10px 10px 10px;
+.cv-text {
+  font-family: "Verdana";
+  font-size: 1.1em;
+  fill: black;
 }
 
-
-h1 {
-	color: #3D9970;
-}
-
-.chartPie {
+.piechart {
   margin: 20px;
 }
 
-.chartPie text {
+
+.piechart text {
   font-family: "Verdana";
   fill: #888;
 }
 
-.chartPie .name-text{
+
+.piechart .name-text{
+  font-size: 1.2em;
+}
+
+.piechart .store-text{
+  font-size: 0.7em;
+  fill: black;
+}
+
+.piechart .value-text{
+  font-size: 1.8em;
+}
+
+.piechart .title {
   font-size: 1em;
+  fill: black;
 }
-
-.chartPie .value-text{
-  font-size: 3em;
-}
-
-
-

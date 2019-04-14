@@ -1,10 +1,10 @@
-function drawSimpleChart(data){
+/**function drawSimpleChart(data){
 
     //var data = JSON.parse(data)
 
-    /**
+    
      * Transform the data here
-     */
+     
     var data = [{x: "A", y: 3},
 		{x: "B", y: 2},
 		{x: "C", y: 7},
@@ -62,3 +62,4 @@ function drawSimpleChart(data){
         .attr("stroke-width", 3)	  
     
 }
+*/

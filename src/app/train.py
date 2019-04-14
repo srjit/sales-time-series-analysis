@@ -40,6 +40,8 @@ def xgboost(params):
 
     ## retrain xgboost here write predictions to file system
     xgbutils.xgbforecast(train_end_date, max_depth, learning_rate, n_estimators)
+    xgbutils.xgbWalkForwardValidation(train_end_date, max_depth, learning_rate, n_estimators)
+    # datautils.get_validationData("xgboost")
 
     return "Success"
 

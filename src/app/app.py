@@ -61,6 +61,14 @@ def forcaststore():
     store = request.args['store']
     predictions = datautils.get_predictions_of_store(algorithm,store)
     return json.dumps(predictions)    
+    
+
+@app.route('/getvalidation', methods=["GET", "POST"])
+def getvalidation():
+    algorithm = request.args['algorithm']
+    print(algorithm)
+    data = datautils.get_validationData(algorithm)
+    return data
 
 
 if __name__ == "__main__":

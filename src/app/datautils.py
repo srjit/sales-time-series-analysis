@@ -53,6 +53,19 @@ def get_predictions(modeltype):
 
     return to_return
 
+# Function to get data from json file
+def get_validationData(modeltype):
+    readLocation = "Validation/" + modeltype + "/"
+    fileNames = os.listdir(readLocation)
+    suf = ".json"
+    fileNames = [filename for filename in fileNames if filename.endswith(suf)]
+    print(fileNames)
+    dataVal = {}
+    for filename in fileNames:
+        filePath = readLocation + filename
+        dataVal = json.load(open(filePath))
+    return dataVal
+    
 
 def get_predictions_of_store(modeltype, store):
     read_location = "predictions/" + modeltype + "/" + store + ".csv"
