@@ -97,4 +97,5 @@ function getTab(tabname){
 
 function showpred(){
     var algorithm = $('#predalgorithm').val();
+    getValidationsData(algorithm);
 }

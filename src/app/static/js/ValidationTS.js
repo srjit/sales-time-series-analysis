@@ -459,15 +459,17 @@ function displayData(data) {
             .attr("class", "title")
 	
   	g.append('text')
- 	 	.attr('text-anchor', 'middle')
- 	 	.attr('font-family', 'Verdana')
-  		.attr('fill', '#888')
- 	 	.attr('dy', '.35em')
- 	 	.text(text);
+ 	.attr('text-anchor', 'middle')
+	.style("font","Lato")
+ 	//.attr('font-family', 'Verdana')
+  	.attr('fill', '#888')
+ 	.attr('dy', '.35em')
+ 	.text(text);
 	
 	
     g.append("text")
      	.attr("class", "store-text")
+	.style("font","Lato")
     	.attr("transform", function(d) {
         var _d = arc.centroid(d);
         	_d[0] *= 1;	

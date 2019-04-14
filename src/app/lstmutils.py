@@ -103,10 +103,10 @@ def walk_forward_validation(full_data_, train_end_date):
 
     model1, actual1, predicted1, rmse1 = validate(train_, test_, sc1)
 
-    cv1 = pd.concat([ pd.Series(data_[data_.date_ > stop_date].Date.tolist(),
-                                name="Date"), pd.Series(actual1, name="actual"),
-                      pd.Series(predicted1, name="predicted")], axis=1)
-    
+    cv1 = pd.concat([ pd.Series(data_[data_.date_ > stop_date].date_.dt.strftime('%Y-%m-%d').tolist(),
+                                name="Date"), pd.Series(actual1, name="Y_actual"),
+                      pd.Series(predicted1, name="Y_pred")], axis=1)
+
     
     ## val model 2
     stop_date = train_end_date + datetime.timedelta(-120)
@@ -194,7 +194,7 @@ def do_walk_forward_validation_and_get_best_models(data,
 
     cv_results = {}
     
-    for store in stores[:3]:
+    for store in stores:
 
         store_res = {}
         store_res["store"] = store
