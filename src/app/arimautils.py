@@ -12,7 +12,11 @@ import sys
 
 
 
-def arimaWalkForwardValidation(p,d,q,trainEndDate):
+def arimaWalkForwardValidation(l):
+	p=l[0]
+	q=l[1]
+	d=l[2]
+	trainEndDate=l[3]
 	df_sales = pd.read_csv("./data/Sales_Multiseries_training.csv")
 	df_sales.Date = pd.to_datetime(df_sales.Date, format='%m/%d/%y')
 	modeltype='arima'
@@ -28,11 +32,7 @@ def arimaWalkForwardValidation(p,d,q,trainEndDate):
 			d1=df_sales[df_sales.Store == s]
 			d2=d1[d1.index < startdate] 
 			dstore = d2['Sales']	
-			p=p
-			d=d
-			q=q
-			mod = sm.tsa.statespace.SARIMAX(dstore,
-								order=(p,d,q),
+			mod = sm.tsa.statespace.SARIMAX(dstore,order=(p,d,q),
 								seasonal_order=(0, 1, 1,12),
 								enforce_stationarity=False,
 								enforce_invertibility=False,freq='D')
@@ -49,11 +49,15 @@ def arimaWalkForwardValidation(p,d,q,trainEndDate):
 		startdate=startdate+relativedelta(months=2)
 	json.dump(dictResult, open(write_location, "w"))
 
-#arimaWalkForwardValidation(1,0,1,'2014/4/1')
 
 
 
-def arimaforecast(p,d,q,trainEndDate,steps):
+
+def arimaforecast(l):
+	p=l[0]
+	q=l[1]
+	d=l[2]
+	trainEndDate=l[3]
 	df_sales = pd.read_csv("./data/Sales_Multiseries_training.csv")
 	df_sales.Date = pd.to_datetime(df_sales.Date, format='%m/%d/%y')
 	df_sales = df_sales.sort_values('Date')
@@ -65,16 +69,12 @@ def arimaforecast(p,d,q,trainEndDate,steps):
 		d1=df_sales[df_sales.Store == s]
 		d2=d1[d1.index <=trainEndDate ] 
 		dstore = d2['Sales']
-		p=p
-		d=d
-		q=q
-		mod = sm.tsa.statespace.SARIMAX(dstore,
-								order=(p,d,q),
+		mod = sm.tsa.statespace.SARIMAX(dstore,order=(p,d,q),
 								seasonal_order=(0, 1, 1,12),
 								enforce_stationarity=False,
 								enforce_invertibility=False,freq='D')
 		results = mod.fit()
-		pred = results.get_forecast(steps)
+		pred = results.get_forecast(steps=10)
 		y_forecastbeyond=pred.predicted_mean
 		df=pd.DataFrame({'Date':y_forecastbeyond.index, 'value':y_forecastbeyond.values})
 		df['Date']=df['Date'].dt.strftime('%m/%d/%y')
@@ -82,7 +82,7 @@ def arimaforecast(p,d,q,trainEndDate,steps):
 		write_location = "predictions/" + modeltype + "/" + s + ".csv"
 		df.to_csv(write_location, index=False,sep=',')
 		
-#arimaforecast(1,0,1,'2014/4/1',20)
+
 
 
 
