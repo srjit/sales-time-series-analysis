@@ -14,15 +14,15 @@ __version__ = "0.0.1"
 
 
 def arima(params):
-    p = params["p"]
-    q = params["q"]
-    d = params["d"]
-    trainEndDate = params["train_end_date"]
-    trainEndDate = datetime.strptime(train_end_date_, "%Y/%m/%d")
-    
-    arimautils.arimaWalkForwardValidation(p,d,q,trainEndDate)
-    
-    arimautils.arimaforecast(p,d,q,trainEndDate,steps)
+    p = int(params["p"])
+    q = int(params["q"])
+    d = int(params["d"])
+    train_end_date_ = params["train_end_date"]
+    train_end_date = datetime.strptime(train_end_date_, "%Y/%m/%d")
+    trainEndDate = str(train_end_date).split(' ')[0]
+    l=[p,q,d,trainEndDate]
+    arimautils.arimaWalkForwardValidation(l)
+    arimautils.arimaforecast(l)
     modeltype = "arima"
 
     ## retrain arima here and write predictions to file system
