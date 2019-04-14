@@ -36,8 +36,13 @@ def build_model_and_evaluate(X_train, y_train, X_test, y_test, sc):
     inputs = np.reshape(inputs, (inputs.shape[0], inputs.shape[1], 1))
     predicted = regressor.predict(inputs)
     predicted_prices = sc.inverse_transform(predicted)
-
     rmse = math.sqrt(mean_absolute_error(y_test, predicted))
+
+    y_test_original = sc.inverse_transform(y_test.reshape(-1,1))
+    y_test = y_test_original.reshape(y_test_original.shape[0],) 
+    # import ipdb
+    # ipdb.set_trace()
+
     return regressor, y_test, predicted_prices.reshape(len(predicted_prices),), rmse
 
     

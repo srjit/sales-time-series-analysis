@@ -93,3 +93,5 @@ def format_and_store_cv_data(cv_info):
         validation[key] = copy.copy(tmp_to_json)
 
     # serialize the 'validation' map here
+    write_location = "./Validation/lstm/cvData.json"
+    json.dump([validation], open(write_location, "w"))
