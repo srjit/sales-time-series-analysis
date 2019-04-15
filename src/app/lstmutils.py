@@ -72,11 +72,10 @@ def validate(train, test, sc):
 
 def predict(model, sc, full_data, forecast_start_date):
 
-    forecast_start_date = forecast_start_date + datetime.timedelta(-1)
     print("Forecasting from : ", forecast_start_date)
 
-    train_ = full_data[full_data.date_ <= forecast_start_date].iloc[:,2:3].values
-    test_ = full_data[full_data.date_ > forecast_start_date].iloc[:,2:3].values
+    train_ = full_data[full_data.date_ < forecast_start_date].iloc[:,2:3].values
+    test_ = full_data[full_data.date_ >= forecast_start_date].iloc[:,2:3].values
     full_data = sc.transform(full_data.iloc[:,2:3].values)
 
     X_pred = []

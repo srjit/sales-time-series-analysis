@@ -79,6 +79,7 @@ def lstm(params):
                                                                                 optimizer)
 
     datautils.format_and_store_cv_data(cv_info)
+    forecast_start_date = forecast_start_date + dt.timedelta(-1)
 
     for result in results:
 
@@ -94,7 +95,6 @@ def lstm(params):
                                         full_data_for_store,
                                         forecast_start_date)
 
-        forecast_start_date = forecast_start_date + dt.timedelta(-1)
         test_ = data[(data.Store == store) & (data.date_ > forecast_start_date)]
 
         prices = pd.Series(predictions.reshape(len(predictions),).tolist(), name="value")
