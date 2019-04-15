@@ -91,7 +91,7 @@ def walk_forward_validation(full_data_, train_end_date):
     cross_validation_info = []
 
     data_ = full_data_[full_data_.date_ <= train_end_date]
-    stop_date = train_end_date + datetime.timedelta(+30)
+    stop_date = train_end_date + datetime.timedelta(+60)
 
     ## val model 1
     train = data_[data_.date_ <= stop_date].iloc[:,2:3].values
@@ -106,6 +106,9 @@ def walk_forward_validation(full_data_, train_end_date):
                                 name="Date"), pd.Series(actual1, name="Y_actual"),
                       pd.Series(predicted1, name="Y_pred")], axis=1)
 
+    ##########################################################################
+
+    train_end_date = train_end_date + datetime.timedelta(+60)
     
     ## val model 2
     stop_date = train_end_date + datetime.timedelta(+60)
@@ -122,7 +125,10 @@ def walk_forward_validation(full_data_, train_end_date):
                                 name="Date"), pd.Series(actual2, name="Y_actual"),
                       pd.Series(predicted2, name="Y_pred")], axis=1)
 
-    
+    train_end_date = train_end_date + datetime.timedelta(+60)
+
+
+    ##########################################################################
 
     ## val model 3
     stop_date = train_end_date + datetime.timedelta(+90)
