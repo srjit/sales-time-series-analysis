@@ -20,7 +20,7 @@ def arimaWalkForwardValidation(l):
 	df_sales = pd.read_csv("./data/Sales_Multiseries_training.csv")
 	df_sales.Date = pd.to_datetime(df_sales.Date, format='%m/%d/%y')
 	modeltype='arima'
-	write_location = "predictions/" + modeltype + "/cvarima.json"
+	write_location = "./Validation/arima/cvData.json"
 	df_sales = df_sales.sort_values('Date')
 	df_sales = df_sales.set_index('Date')
 	stores=["Savannah","Baltimore","Columbus","Detroit","Lancaster","Louisville","Philadelphia","Portland","Richmond","San Antonio"]
@@ -40,17 +40,17 @@ def arimaWalkForwardValidation(l):
 			enddate=startdate+relativedelta(months=2)
 			results = mod.fit()
 			y_truth = d1['Sales'][startdate:enddate]
-			print(len(y_truth))
 			y_forecast= results.get_prediction(start=pd.to_datetime(startdate) ,end=pd.to_datetime(enddate), dynamic=False).predicted_mean
-			y_forecast=y_forecast[ :len(y_truth)]
+			y_forecast=y_forecast[ :len(y_truth)-1]
+			y_truth =y_truth[ :len(y_forecast)]
 			st= [s for i in range(len(y_forecast))]
-			df=pd.DataFrame({'Date':y_forecast.index ,'Store':st,'Y_actual':y_truth.values,'Y_Pred':y_forecast.values})
+			df=pd.DataFrame({'Date':y_forecast.index,'Y_actual':y_truth.values,'Y_pred':y_forecast.values,'Store':st})
 			df['Date'] = df['Date'].dt.strftime('%Y-%m-%d')
 			p1=df.to_json(orient='records')[1:-1].strip()
 			l1.append(p1)
 		dictResult['df_cv_' + str(i)]=str(l1).replace("'","")
 		startdate=startdate+relativedelta(months=2)
-	json.dump(dictResult, open(write_location, "w"))
+	json.dump([dictResult], open(write_location, "w"))
 
 
 
