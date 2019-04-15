@@ -24,9 +24,9 @@ Following are the descriptions of the hyperparameters for each model integrated 
 
 - ARIMA
 
-	* p is the number of autoregressive terms
-	* q is the number of lagged forecast errors in the prediction equation.
-	* d is the number of nonseasonal differences needed for stationarity
+	* p - the number of autoregressive terms
+	* q - the number of lagged forecast errors in the prediction equation.
+	* d - the number of nonseasonal differences needed for stationarity
 	
 - XGBoost
 
@@ -36,8 +36,8 @@ Following are the descriptions of the hyperparameters for each model integrated 
   
 - LSTM
 
-	* learning_rate
-	* optimizer
+	* learning_rate - learning rate of the optimizer. The default value is 0.01
+	* optimizer - Optimizer used for the lstm model. This could be either sgd, rmsprop, adam. Adam seems to be the optimizer that provides best values for the metrics used.
 
 ### Visualizing Model Performace
 ---
