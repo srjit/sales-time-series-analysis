@@ -24,15 +24,15 @@ Following are the descriptions of the hyperparameters for each model integrated 
 
 - ARIMA
 
-	* p
-	* q
-	* d
+	* p is the number of autoregressive terms
+	* q is the number of lagged forecast errors in the prediction equation.
+	* d is the number of nonseasonal differences needed for stationarity
 	
 - XGBoost
 
 	* learning_rate
 	* max_depth
-    * n_estimators
+    	* n_estimators
   
 - LSTM
 
@@ -45,6 +45,8 @@ Following are the descriptions of the hyperparameters for each model integrated 
 - Pie Chart | Line Chart
  
 ### Area Plot for Visualizing Historic Data
+The stacked area chart describes about the historical sales data for all the stores. It is aggregated month wise. On Hovering over the Area plot we can get the details of the sales in a store for a particular day.
+An Onclick on the selected store links to the sales forecast for the next 7 days after the forecast start date for a particular selected store.
 ---
  
 ### Forecasting Predicitons
