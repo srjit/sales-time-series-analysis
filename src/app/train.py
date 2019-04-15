@@ -1,6 +1,7 @@
 ## This file contains the interface to add algorithm train methods
 
 import datautils
+import datetime as dt
 from datetime import datetime
 import lstmutils
 import xgbutils
@@ -93,7 +94,7 @@ def lstm(params):
                                         full_data_for_store,
                                         forecast_start_date)
 
-        forecast_start_date = forecast_start_date + datetime.timedelta(-1)
+        forecast_start_date = forecast_start_date + dt.timedelta(-1)
         test_ = data[(data.Store == store) & (data.date_ > forecast_start_date)]
 
         prices = pd.Series(predictions.reshape(len(predictions),).tolist(), name="value")
