@@ -35,7 +35,7 @@ var svg = d3.select("#viz2").append("svg")
 var size=20;
 
 
-d3.csv("https://raw.githubusercontent.com/manaswitha1001/timeseries/master/monthlyaggregate.csv", function(error, data) {
+d3.csv("https://raw.githubusercontent.com/srjit/sales-time-series-analysis/master/src/app/data/monthlyaggregate.csv", function(error, data) {
   var keys = data.columns.filter(function(key) { return key !== 'date'; })
   
   
