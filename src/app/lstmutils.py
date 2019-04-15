@@ -70,10 +70,13 @@ def validate(train, test, sc):
     return build_model_and_evaluate(X_train, y_train, X_test, y_test, sc)
 
 
-def predict(model, sc, full_data, train_end_date):
+def predict(model, sc, full_data, forecast_start_date):
 
-    train_ = full_data[full_data.date_ <= train_end_date].iloc[:,2:3].values
-    test_ = full_data[full_data.date_ > train_end_date].iloc[:,2:3].values
+    forecast_start_date = forecast_start_date + datetime.timedelta(-1)
+    print("Forecasting from : ", forecast_start_date)
+
+    train_ = full_data[full_data.date_ <= forecast_start_date].iloc[:,2:3].values
+    test_ = full_data[full_data.date_ > forecast_start_date].iloc[:,2:3].values
     full_data = sc.transform(full_data.iloc[:,2:3].values)
 
     X_pred = []
@@ -81,6 +84,7 @@ def predict(model, sc, full_data, train_end_date):
         X_pred.append(full_data[i-7:i])
 
     X_pred = np.array(X_pred)
+    print("Predicting:", len(X_pred), " rows")
     pred = model.predict(X_pred)
     prices = sc.inverse_transform(pred)
     return prices

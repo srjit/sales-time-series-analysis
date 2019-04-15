@@ -55,6 +55,12 @@ def lstm(params):
     train_end_date_ = params["train_end_date"]
     train_end_date = datetime.strptime(train_end_date_, "%Y/%m/%d")
 
+
+    # forecast start day
+    forecast_start_date_ = params["forecast_start_date"]
+    forecast_start_date = datetime.strptime(forecast_start_date_, "%Y/%m/%d")
+
+    
     print("Train End Date", train_end_date)
 
     ## retrain lstm here write predictions to file system
@@ -80,7 +86,7 @@ def lstm(params):
         predictions = lstmutils.predict(model,
                                         scaler,
                                         full_data_for_store,
-                                        train_end_date)
+                                        forecast_start_date)
 
         test_ = data[(data.Store == store) & (data.date_ > train_end_date)]
 
