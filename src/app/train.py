@@ -33,13 +33,18 @@ def xgboost(params):
     max_depth = params["max_depth"]
     n_estimators = params["n_estimators"]
 
+    # Train end date
     train_end_date_ = params["train_end_date"]
     train_end_date = datetime.strptime(train_end_date_, "%Y/%m/%d")
 
     print("Train End Date", train_end_date)
 
+    ## Forecast start date
+    forecast_start_date_ = params["forecast_start_date"]
+    forecast_start_date = datetime.strptime(forecast_start_date_, "%Y/%m/%d")
+
     ## retrain xgboost here write predictions to file system
-    xgbutils.xgbforecast(train_end_date, max_depth, learning_rate, n_estimators)
+    xgbutils.xgbforecast(forecast_start_date_, max_depth, learning_rate, n_estimators)
     xgbutils.xgbWalkForwardValidation(train_end_date, max_depth, learning_rate, n_estimators)
     # datautils.get_validationData("xgboost")
 
