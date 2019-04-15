@@ -45,8 +45,8 @@ Following are the descriptions of the hyperparameters for each model integrated 
 - Pie Chart | Line Chart
  
 ### Area Plot for Visualizing Historic Data
-The stacked area chart describes about the historical sales data for all the stores. It is aggregated month wise. On Hovering over the Area plot we can get the details of the sales in a store for a particular day.
-An Onclick on the selected store links to the sales forecast for the next 7 days after the forecast start date for a particular selected store.
+	The stacked area chart describes about the historical sales data for all the stores. Each store is encoded using a color attribute and it is aggregated month-wise. On Hovering over the Area plot on a particular store, we can get the details of the sales in a store for a particular day.
+	An Onclick on the selected store links to the sales forecast for the next 7 days after the forecast start date for a particular selected store.
 ---
  
 ### Forecasting Predicitons
