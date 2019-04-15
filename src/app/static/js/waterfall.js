@@ -83,7 +83,7 @@ function updateData2(data, calc){
 
 function drawWaterFallChart(data, calc){
 
-    var margin = { top: 80, right: 30, bottom: 30, left: 50 };
+    var margin = { top: 80, right: 30, bottom: 30, left: 65 };
     var width = 960 - margin.left - margin.right;
     var height = 500 - margin.top - margin.bottom;
     var padding = 0.4;
@@ -229,7 +229,7 @@ function drawWaterFallChart(data, calc){
 
     chart.append("text")
             .attr("text-anchor", "middle")  
-	.attr("transform", "translate("+ (padding/2 - 42) +","+(height/2)+")rotate(-90)")
+	.attr("transform", "translate("+ (padding/2 - 40) +","+(height/2)+")rotate(-90)")
 	.style("font-size","12px")
 	.style("font","Lato")
         .text("Price Predicted (USD)");    

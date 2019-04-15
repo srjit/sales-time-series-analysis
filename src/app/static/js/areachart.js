@@ -4,7 +4,7 @@ var div = d3.select("body").append("div")
     .style("opacity", 0);
 
 var margin = {top: 20, right: 20, bottom: 30, left: 70},
-    width = 960 - margin.left - margin.right,
+    width = 670 - margin.left - margin.right,
     height = 500 - margin.top - margin.bottom;
 
 var parseDate = d3.timeParse("%Y-%m-%d");
