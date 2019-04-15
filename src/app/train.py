@@ -88,7 +88,8 @@ def lstm(params):
                                         full_data_for_store,
                                         forecast_start_date)
 
-        test_ = data[(data.Store == store) & (data.date_ > train_end_date)]
+        forecast_start_date = forecast_start_date + datetime.timedelta(-1)
+        test_ = data[(data.Store == store) & (data.date_ > forecast_start_date)]
 
         prices = pd.Series(predictions.reshape(len(predictions),).tolist(), name="value")
         dates = test_.Date.reset_index(drop=True)
