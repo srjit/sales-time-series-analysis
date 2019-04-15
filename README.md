@@ -42,7 +42,7 @@ Following are the descriptions of the hyperparameters for each model integrated 
 ### Visual Outputs
 ---
 
-#### Model Performace
+#### Model Performance
 
 Pie Chart | Line Chart Functions
  
