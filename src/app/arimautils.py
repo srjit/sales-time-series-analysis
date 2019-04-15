@@ -28,6 +28,7 @@ def arimaWalkForwardValidation(l):
 	dictResult = {}
 	startdate = pd.to_datetime(trainEndDate,format='%Y/%m/%d');
 	for i in range (3):
+		l1=[]
 		for s in stores:
 			d1=df_sales[df_sales.Store == s]
 			d2=d1[d1.index < startdate] 
@@ -45,7 +46,9 @@ def arimaWalkForwardValidation(l):
 			st= [s for i in range(len(y_forecast))]
 			df=pd.DataFrame({'Date':y_forecast.index ,'Store':st,'Y_actual':y_truth.values,'Y_Pred':y_forecast.values})
 			df['Date'] = df['Date'].dt.strftime('%Y-%m-%d')
-			dictResult['df_cv_' + str(i)] = df.to_json(orient='records')
+			p1=df.to_json(orient='records')[1:-1].strip()
+			l1.append(p1)
+		dictResult['df_cv_' + str(i)]=str(l1).replace("'","")
 		startdate=startdate+relativedelta(months=2)
 	json.dump(dictResult, open(write_location, "w"))
 
