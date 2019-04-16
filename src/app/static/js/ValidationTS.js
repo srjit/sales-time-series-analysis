@@ -6,18 +6,8 @@ function displayData(data) {
     var gap = 10;
 
     data = JSON.parse(data);
-    console.log(data);
-	// var path = "./Validation/xgboost/cvData.json";
-	// var url = "https://raw.githubusercontent.com/chirras/D3-Data/master/Data%20Files/cvData.json";
-	// console.log(url);
 
 	var parseDate = d3.timeParse("%Y-%m-%d");
-
-	//d3.json(url, function(error, data) {
-
-	//if (error) return console.warn(error);
-	console.log(data);
-	//console.log(data[0].df_cv_0);
 
 	var svg = d3.select("div#viz1")
     		.append("svg")
@@ -42,23 +32,6 @@ function displayData(data) {
 	    	   .attr("class", "linechart")
 	    	   .attr("height", height)
 	    	   .attr("width", lineWidth)
-
-	/*
-	// add a box around each SVG
-	pieChart.append("rect")
-	    .attr("height", height)
-	    .attr("width", width+20)
-	    .attr("stroke", "black")
-	    .attr("fill", "#ccc")
-	    .attr("stroke-width", 2)
-
-	lineChart.append("rect")
-	    .attr("height", height)
-	    .attr("width", width*2-20)
-	    .attr("stroke", "black")
-	    .attr("fill", "#ccc")
-	    .attr("stroke-width", 2)	
-	*/
 	
 	var xScale = d3.scaleTime()
 	  .range([margin.left+40, lineWidth-20]);
