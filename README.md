@@ -70,3 +70,7 @@ Once the dependencies are installed, the app can be run locally with the command
 ---
 
 The app has been deployed on a heroku server at: [Sales Analyzer](https://sales-ts-forecast.herokuapp.com/)
+
+### Information
+---
+The development process of the project along with more information on the modeling and visualizations can be found at [Sales Analyzer Information](https://srjit.github.io/sales-ts-forecast-info/)
