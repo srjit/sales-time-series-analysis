@@ -10,7 +10,6 @@ import os
 import sys
 
 
-
 def arimaWalkForwardValidation(l):
 	p=l[0]
 	q=l[1]
@@ -52,9 +51,6 @@ def arimaWalkForwardValidation(l):
 	json.dump([dictResult], open(write_location, "w"))
 
 
-
-
-
 def arimaforecast(l):
 	p=l[0]
 	q=l[1]
@@ -69,7 +65,7 @@ def arimaforecast(l):
 	stores=["Savannah","Baltimore","Columbus","Detroit","Lancaster","Louisville","Philadelphia","Portland","Richmond","San Antonio"]
 	for s in stores:
 		d1=df_sales[df_sales.Store == s]
-		d2=d1[d1.index <=trainEndDate ] 
+		d2=d1[d1.index < trainEndDate ] 
 		dstore = d2['Sales']
 		mod = sm.tsa.statespace.SARIMAX(dstore,order=(p,d,q),
 								seasonal_order=(0, 1, 1,12),

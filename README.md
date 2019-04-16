@@ -9,6 +9,7 @@ The web application provides an interface by which data scientists or store mana
 
 ### Data
 ---
+
 The dataset is propritory sales information of 10 different stores, which are the clients of DataRobot Inc. This data was available to us in CSV format and it included the following features
 
 
@@ -33,9 +34,9 @@ Following are the descriptions of the hyperparameters for each model integrated 
 	
 - XGBoost
 
-	* learning_rate
-	* max_depth
-    	* n_estimators
+	* learning_rate - Boosting Learning Rate. 
+	* max_depth - Maximum tree depth for base learners.
+    * n_estimators - Number of trees to fit.
   
 - LSTM
 
@@ -47,7 +48,14 @@ Following are the descriptions of the hyperparameters for each model integrated 
 
 #### Model Performance
 
-Pie Chart | Line Chart Functions
+<p align="justify"> Doughnut chart describes the historical average sales at different stores. As the Store is an categorical variable, each value is encoded using a different color attribute. The arc length of each slice is proportional to the average sales of a particular location. The location lebel on each arc provide initial overview to the user on what each arc represents. On hovering over each location, we get the average sales of that store displayed in the area of inner circle with the location which provides on demand details. </p>
+
+<p align="justify"> Onclick on the hovered store, links to the model performance evalution (Time Series Cross Validation) plot using line charts for that particular store using user selected model. </p>
+
+<p align="justify"> Multiple line charts describe the model performance using forward validation of a particular store. This approach uses the input from user on the initial train end date, until which, data is considered to be as part of training data and next two months as the validation data (validation window period = 2 months). In the next step, we consider data until validation end date in first step to be part of trainig data (training data increased by 2 months) and next two months as validation data. This will be repeated for one more step. This is considered to be a practical approach as we validate and retrain model using the future data in real world. </p>
+
+<p align="justify"> As the Sales and Time are quantitative variables, we have used position as channel which is ranked first in effective channel ranking by datatype for quantitative variables. As we have two attributes Actual and Predicted sales over the Y-axis, we used two different colors to encode the attributes where 'steelblue' represents the actual sales and 'tomato' represents the predicted sales value. This plot uses simple and effective ways to visualize the model performace as it makes use effecitve channels, marks, avoids the extra unnecessary dimension and minimizes the occlusion by using only to attributes at a given time. </p>
+
  
 #### Area Plot for Visualizing Historic Data
 

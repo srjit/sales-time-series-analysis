@@ -21,10 +21,15 @@ def arima(params):
     train_end_date_ = params["train_end_date"]
     train_end_date = datetime.strptime(train_end_date_, "%Y/%m/%d")
     trainEndDate = str(train_end_date).split(' ')[0]
-    l=[p,q,d,trainEndDate]
-    arimautils.arimaWalkForwardValidation(l)
-    arimautils.arimaforecast(l)
+    forecast_start_date_ = params["forecast_start_date"]
+    forecast_start_date = datetime.strptime(forecast_start_date_, "%Y/%m/%d")
+    forecast_start_date=str(forecast_start_date).split(' ')[0]
+    l1=[p,q,d,trainEndDate]
+    l2=[p,q,d,forecast_start_date]
+    arimautils.arimaWalkForwardValidation(l1)
+    arimautils.arimaforecast(l2)
     modeltype = "arima"
+   
 
     ## retrain arima here and write predictions to file system
     return "Success"

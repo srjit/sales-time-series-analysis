@@ -7,7 +7,8 @@ tensorflow
 keras
 sklearn
 datetime
-statsmodels==0.6.0
+scipy
+statsmodels
 python-dateutil
 datetime
 xgboost
