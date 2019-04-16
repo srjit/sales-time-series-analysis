@@ -6,7 +6,7 @@ The web application provides an interface by which data scientists or store mana
 
 ### Dataset
 ---
-The dataset is propritory sales information of 10 different stores, which are the clients of DataRobot Inc.
+The dataset is sample sales information of 10 different stores from DataRobot Inc.
 
 
 ### Getting Started
@@ -30,9 +30,9 @@ Following are the descriptions of the hyperparameters for each model integrated 
 	
 - XGBoost
 
-	* learning_rate
-	* max_depth
-    	* n_estimators
+	* learning_rate - Boosting Learning Rate. 
+	* max_depth - Maximum tree depth for base learners.
+    * n_estimators - Number of trees to fit.
   
 - LSTM
 
