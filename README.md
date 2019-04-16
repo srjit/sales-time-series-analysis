@@ -1,12 +1,15 @@
 # Time Series Analysis on Sales Data
 
 ---
+
+Sales forecasting is one of the most common time series analysis problems. Being able to estimate the number of products that a store going to sell in future will allow store managers to prepare the inventory, the number of employees needed minimizes over and under stocking thereby minimizing losses and most importantly maximizes sales and customer satisfaction.
+
 The web application provides an interface by which data scientists or store managers can use past sales data to forecast it from a selected date. In addition to allowing the user to retrain and tune three different time series models, the application also displays the model performance, past information and forecasted predictions visually.
 
 
-### Dataset
+### Data
 ---
-The dataset is propritory sales information of 10 different stores, which are the clients of DataRobot Inc.
+The dataset is propritory sales information of 10 different stores, which are the clients of DataRobot Inc. This data was available to us in CSV format and it included the following features
 
 
 ### Getting Started
