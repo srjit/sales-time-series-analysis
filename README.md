@@ -85,4 +85,4 @@ The app has been deployed on a heroku server at: [Sales Analyzer](https://sales-
 
 ### Information
 ---
-The development process of the project along with more information on the modeling and visualizations can be found at [Sales Analyzer Information](https://srjit.github.io/sales-ts-forecast-info/)
+The development process of the project along with more information on the modeling and visualizations can be found at [Sales Analyzer Information](https://github.com/srjit/sales-time-series-analysis/tree/master/docs)
