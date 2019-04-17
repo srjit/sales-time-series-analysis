@@ -6,13 +6,6 @@ Sales forecasting is one of the most common time series analysis problems. Being
 
 The web application provides an interface by which data scientists or store managers can use past sales data to forecast it from a selected date. In addition to allowing the user to retrain and tune three different time series models, the application also displays the model performance, past information and forecasted predictions visually.
 
-
-### Data
----
-
-The dataset is propritory sales information of 10 different stores, which are the clients of DataRobot Inc. This data was available to us in CSV format and it included the following features
-
-
 ### Getting Started
 ---
 Install the dependencies for the web application using the python [requirements file](https://github.com/srjit/sales-time-series-analysis/blob/master/src/app/requirements.txt) by the command
