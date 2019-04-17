@@ -173,14 +173,14 @@ function displayData(data) {
 	lineChart.append("text")
         .attr("text-anchor", "middle")  
         .attr("transform", "translate("+ (margin.left/2) +","+(height/2)+")rotate(-90)")  
-        .style("font-size", "12px") 
+        .style("font-size", "1.8em") 
         .style("font-family", "Lato")
         .text("Sales");
 	
     lineChart.append("text")
         .attr("text-anchor", "middle")  
         .attr("transform", "translate("+ (lineWidth/2) +","+(height-margin.bottom/5)+")")  
-        .style("font-size", "12px") 
+        .style("font-size", "1.8em") 
         .style("font-family", "Lato")
         .text("Date");       
 	
@@ -188,7 +188,7 @@ function displayData(data) {
 		.attr("class", "cv-text")
      	.attr("transform", "translate("+ (lineWidth/2) + "," +((margin.top))+")")
         .attr("text-anchor", "middle")  
-        .style("font-size", "1.1em")
+        .style("font-size", "2.0em")
 	.style("font-family", "Lato")
         .text("Sales Prediction CV - Actual vs Predicted");
 

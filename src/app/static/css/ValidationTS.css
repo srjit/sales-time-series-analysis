@@ -1,6 +1,6 @@
 .cv-text {
   font-family: "Lato";
-  font-size: 1.1em;
+  font-size: 2.1em;
   fill: black;
 }
 
@@ -16,19 +16,19 @@
 
 
 .piechart .name-text{
-  font-size: 1.2em;
+  font-size: 2.0em;
 }
 
 .piechart .store-text{
-  font-size: 0.7em;
+  font-size: 1.4em;
   fill: black;
 }
 
 .piechart .value-text{
-  font-size: 1.8em;
+  font-size: 2.8em;
 }
 
 .piechart .title {
-  font-size: 1em;
+  font-size: 2.2em;
   fill: black;
 }
