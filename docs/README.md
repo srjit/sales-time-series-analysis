@@ -129,7 +129,7 @@ There would be two types of consumers for our visualizations:
 
 #### Model Performance Evaluation
 
-![alt text](https://github.com/srjit/sales-time-series-analysis/blob/master/images/Validation-plot.png)
+![alt text](images/Validation-plot.png)
 
 <p align="justify"> Doughnut chart describes the historical average sales at different stores. As the Store is an categorical variable, each value is encoded using a different color attribute. The arc length of each slice is proportional to the average sales of a particular location. The location lebel on each arc provide initial overview to the user on what each arc represents. On hovering over each location, we get the average sales of that store displayed in the area of inner circle with the location which provides on demand details. </p>
 
@@ -142,7 +142,7 @@ There would be two types of consumers for our visualizations:
  
 #### Area Plot for Visualizing Historic Data
 
-![alt text](https://github.com/srjit/sales-time-series-analysis/blob/master/images/Area-plot.png)
+![alt text](images/Area-plot.png)
 
 The stacked area chart describes about the historical sales data for all the stores. Each store is encoded using a color attribute and it is aggregated month-wise. On Hovering over the Area plot on a particular store, we can get the details of the sales in a store for a particular day.
 	
