@@ -183,7 +183,7 @@ Enable user to upload different datasets on time series and able to predict the 
 ---
 
 <a href="http://www.youtube.com/watch?feature=player_embedded&v=9vVIK3TdpJM
-" target="_blank"><img src="http://img.youtube.com/vi/9vVIK3TdpJM/default.jpg" 
+" target="_blank"><img src="http://img.youtube.com/vi/9vVIK3TdpJM/hqdefault.jpg" 
 alt="IMAGE ALT TEXT HERE" width="240" height="180" border="10" /></a>
 
 
