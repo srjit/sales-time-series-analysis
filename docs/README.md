@@ -155,6 +155,15 @@ The waterfall plot provides a visualization of the predictions from the models i
 The plot shows the variation of prices (up/down) and the percentage change in the prices from the prices from the previous day. An increase in sales is represented by a gray bar whereas a decrease is represented by an yellow bar.
 
 
+### Demo
+---
+
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=9vVIK3TdpJM
+" target="_blank"><img src="http://img.youtube.com/vi/9vVIK3TdpJM/maxresdefault.jpg" 
+alt="IMAGE ALT TEXT HERE" width="400" border="10" /></a>
+
+
+
 ### Conclusion
 ---
 
@@ -177,14 +186,6 @@ Include more evaluation metrics as part of validation plot that will help a Data
 - Comprehensive
 
 Enable user to upload different datasets on time series and able to predict the target variable for the regression problems.
-
-
-### Demo
----
-
-<a href="http://www.youtube.com/watch?feature=player_embedded&v=9vVIK3TdpJM
-" target="_blank"><img src="http://img.youtube.com/vi/9vVIK3TdpJM/maxresdefault.jpg" 
-alt="IMAGE ALT TEXT HERE" width="400" border="10" /></a>
 
 
 ### Related Research
