@@ -182,7 +182,7 @@ Enable user to upload different datasets on time series and able to predict the 
 ### Demo
 ---
 
-[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/9vVIK3TdpJM&feature=youtu.be/0.jpg)](https://www.youtube.com/watch?v=9vVIK3TdpJM&feature=youtu.be)
+[![Alt text](https://img.youtube.com/vi/9vVIK3TdpJM/default.jpg)](https://www.youtube.com/watch?v=9vVIK3TdpJM)
 
 
 ### Related Research
