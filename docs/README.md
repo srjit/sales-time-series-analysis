@@ -144,15 +144,15 @@ There would be two types of consumers for our visualizations:
 
 ![alt text](images/Area-plot.png)
 
-The stacked area chart describes about the historical sales data for all the stores. Each store is encoded using a color attribute and it is aggregated month-wise. On Hovering over the Area plot on a particular store, we can get the details of the sales in a store for a particular day.
+<p align="justify"> The stacked area chart describes about the historical sales data for all the stores. Each store is encoded using a color attribute and it is aggregated month-wise. On Hovering over the Area plot on a particular store, we can get the details of the sales in a store for a particular day. </p>
 	
-An Onclick on the selected store links to the sales forecast for the next 7 days after the forecast start date for a particular selected store.
+<p align="justify"> An Onclick on the selected store links to the sales forecast for the next 7 days after the forecast start date for a particular selected store. </p>
 	
 #### Forecasting Predicitons
 
-The waterfall plot provides a visualization of the predictions from the models integrated to the applications. The forecast date can be provided as one of the user inputs while the model is being trained/re-trained. 
+<p align="justify"> The waterfall plot provides a visualization of the predictions from the models integrated to the applications. The forecast date can be provided as one of the user inputs while the model is being trained/re-trained. </p>
 
-The plot shows the variation of prices (up/down) and the percentage change in the prices from the prices from the previous day. An increase in sales is represented by a gray bar whereas a decrease is represented by an yellow bar.
+<p align="justify"> The plot shows the variation of prices (up/down) and the percentage change in the prices from the prices from the previous day. An increase in sales is represented by a gray bar whereas a decrease is represented by an yellow bar. </p>
 
 
 ### Demo
@@ -160,14 +160,14 @@ The plot shows the variation of prices (up/down) and the percentage change in th
 
 <a href="http://www.youtube.com/watch?feature=player_embedded&v=9vVIK3TdpJM
 " target="_blank"><img src="http://img.youtube.com/vi/9vVIK3TdpJM/maxresdefault.jpg" 
-alt="IMAGE ALT TEXT HERE" width="400" border="10" /></a>
+alt="IMAGE ALT TEXT HERE" width="400" border="10" align="center" /></a>
 
 
 
 ### Conclusion
 ---
 
-Application enables users Data Scientists/Store Managers see the overall trends in the sales across different locations, makes use of machine learning models (both Supervised and Time Series) to forecast the sales from the forecast date selected by the user using D3 Visualizations. We want provide the user a platform to understand the model performance by parameter tunning on three different models rather than taking only the best performing model. In addition to allowing the user to retrain and tune three different machine learning models, the application also displays the model performance, past information and forecasted predictions. 
+<p align="justify"> Application enables users Data Scientists/Store Managers see the overall trends in the sales across different locations, makes use of machine learning models (both Supervised and Time Series) to forecast the sales from the forecast date selected by the user using D3 Visualizations. We want provide the user a platform to understand the model performance by parameter tunning on three different models rather than taking only the best performing model. In addition to allowing the user to retrain and tune three different machine learning models, the application also displays the model performance, past information and forecasted predictions. </p>
 
 
 
@@ -177,15 +177,15 @@ The major addons we want to include are:
 
 - Interpretability 
 
-The current visualization let's the user know the sales prediction ahead. We want to extend this to let the user know Which features drive the decision of increase/decrease in the sales. This will help the store managers on their Next Best Action (NBA) and manage store effectively.
+<p align="justify"> The current visualization let's the user know the sales prediction ahead. We want to extend this to let the user know Which features drive the decision of increase/decrease in the sales. This will help the store managers on their Next Best Action (NBA) and manage store effectively. </p>
 
 - Evaluation Metrics
 
-Include more evaluation metrics as part of validation plot that will help a Data Scientist to make better decisions on the model performance.
+<p align="justify"> Include more evaluation metrics as part of validation plot that will help a Data Scientist to make better decisions on the model performance. </p>
 
 - Comprehensive
 
-Enable user to upload different datasets on time series and able to predict the target variable for the regression problems.
+<p align="justify"> Enable user to upload different datasets on time series and able to predict the target variable for the regression problems. </p>
 
 
 ### Related Research
