@@ -158,13 +158,34 @@ The plot shows the variation of prices (up/down) and the percentage change in th
 ### Conclusion
 ---
 
+Application enables users Data Scientists/Store Managers see the overall trends in the sales across different locations, makes use of machine learning models (both Supervised and Time Series) to forecast the sales from the forecast date selected by the user using D3 Visualizations. We want provide the user a platform to understand the model performance by parameter tunning on three different models rather than taking only the best performing model. In addition to allowing the user to retrain and tune three different machine learning models, the application also displays the model performance, past information and forecasted predictions. 
+
 
 
 #### Future Work
 
+The major addons we want to include are:
+
+- Interpretability 
+
+The current visualization let's the user know the sales prediction ahead. We want to extend this to let the user know Which features drive the decision of increase/decrease in the sales. This will help the store managers on their Next Best Action (NBA) and manage store effectively.
+
+- Evaluation Metrics
+
+Include more evaluation metrics as part of validation plot that will help a Data Scientist to make better decisions on the model performance.
+
+- Comprehensive
+
+Enable user to upload different datasets on time series and able to predict the target variable for the regression problems.
 
 
-### Reference
+### Demo
+---
+
+[![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/9vVIK3TdpJM&feature=youtu.be/0.jpg)](https://www.youtube.com/watch?v=9vVIK3TdpJM&feature=youtu.be)
+
+
+### Related Research
 ---
 
 Related Research
