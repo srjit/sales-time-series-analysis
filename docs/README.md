@@ -113,7 +113,7 @@ The following operations were done on the raw data as a part of the cleanup proc
 ### Design Process
 ---
 
-After reviewing the tasks and from our group discussions, we came to the conclusions that there would be two primary purposes the visualizations we build. The first would be to “present” - the predictions of the model and derive insights from them. These would be the primary output of the time series forecasting application. The secondary purpose would be “discover” - to ensure the quality of models.
+<p align="justify"> After reviewing the task analysis and from our group discussions, we came to the conclusions that there would be two primary purposes the visualizations we build. The first would be to “present” - the predictions of the model and derive insights from them. These would be the primary output of the time series forecasting application. The secondary purpose would be “discover” - to ensure the quality of models. </p>
 
 #### Consumers of our visualizations
 
@@ -122,6 +122,37 @@ There would be two types of consumers for our visualizations:
 - Data Analyst (s) / Data Scientist(s) - People who can infer the visualization and derive conclusions on the performance of the model.
 
 - Store Managers - People who would be looking at the sales prediction visualizations from the model and optimizing their resources in accordance with them.
+
+
+####  Iterative Improvement
+
+- Stacked Area Chart
+
+<p align="justify"> The original sketch is to show multiple area plots having a shared x-axis. Instead of having multiple area charts, a stacked area chart is chosen to visualize the historical sales data across all the stores over time .The idea is to see the sales across different stores at the same time. Store being the categorical feature we have encoded each value with different color to show the variations. </p>
+
+- Waterfall Chart 
+
+<p align="justify"> The original sketch demonstrated to plot the daily variation of prices from a base price, in the up or down direction. Instead of this idea, a waterfall model plot will be used. The plot will show the increase or decrease in price from the previous day, keeping the previous day as the baseline. The bars in the plot will be encoded in two colors, showing the rise or fall from the previous day’s sale. In addition, the plot will also present the percentage of increase in price from the previous day above the bars. </p>
+
+![alt text](images/InitialSketch-WaterFall.png)
+![alt text](images/WaterFall-2.png)
+
+- Validation Chart
+
+<p align="justify"> We have used Forward validation technique to evalute the time series data. The initial design had only the line chart with the validation results using 6 steps of size 30 days. In order to incorporate the store location feature we brought Pie chart and linked with line chart based on the location where each arc of the pie indicates the average sales in that particular store and also changed the number of forward validation steps to 3 steps with step size of 60 days from the forecast date selected by user.  </p>
+
+![alt text](images/InitialSketch-ValPlot.png)
+
+<p align="justify"> In order to display the average sales value of a store, we changes the pie chart to doughnut chart where the area inside inner circle is used to display the average sales information using onhover functionality. Also we used onclick function to show the model performance of store selected by the user on pie chart. </p>
+
+![alt text](images/ValPlot-Plotly.png)
+
+
+#### Usability Testing Feedback
+
+- The store location is added in the waterfall chart when a particular store is clicked in the area plot.  And all the legends and labels are made appropriate to the plots. On hover is added to the area chart so that the user can get the exact sales for a day hovered.
+
+- The area chart and the waterfall chart are advised to be kept adjacent and the changes are reflected in the app.
 
 
 ### Final Visualization
@@ -158,9 +189,9 @@ There would be two types of consumers for our visualizations:
 ### Demo
 ---
 
-<a href="http://www.youtube.com/watch?feature=player_embedded&v=9vVIK3TdpJM
+<a align="center" href="http://www.youtube.com/watch?feature=player_embedded&v=9vVIK3TdpJM
 " target="_blank"><img src="http://img.youtube.com/vi/9vVIK3TdpJM/maxresdefault.jpg" 
-alt="IMAGE ALT TEXT HERE" width="400" border="10" align="center" /></a>
+alt="IMAGE ALT TEXT HERE" width="400" border="10" /></a>
 
 
 
