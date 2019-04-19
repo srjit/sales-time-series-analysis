@@ -202,7 +202,8 @@ alt="IMAGE ALT TEXT HERE" width="400" border="10" /></a>
 
 
 
-#### Future Work
+### Future Work
+---
 
 The major addons we want to include are:
 
