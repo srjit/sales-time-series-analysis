@@ -19,10 +19,8 @@ We aim to approach this problem from two different perspectives:
 <p align="justify"> we would like to design a web application that provides an interface by which data scientists or store managers can use past sales data to forecast it from a selected date. In addition to allowing the user to retrain and tune three different time series models, the application also displays the model performance, past information and forecasted predictions visually. </p>
 
 
-### Data
+### Dataset
 ---
-
-#### Dataset
 
 The dataset is sample sales information of 10 different stores over the time of 2 years from DataRobot Inc.
 
