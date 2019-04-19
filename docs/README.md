@@ -76,7 +76,7 @@ We performed profiling of all the variables used in the analysis for the distrib
 
 We also brought week as a variable in our analysis from the date and looked at the variation of sales prices over the three years with heatmaps. The anticipated climb in sales during the weeks of November/December can be easily observed here.
 
-![alt text](images/Heatmap-plot.png)
+![alt text](images/Heatmap-Plot.png)
 
 To be able to study the trend in features like ‘Num_Employees’ and ‘Num_Customers’ over the time especially during Black Friday and Christmas for a given store, we have visualized the data using plotly. Below we can see the Number of employees required climbs up during the holidays season to able to help high volume of customers needs.
 
