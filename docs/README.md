@@ -19,7 +19,7 @@ We aim to approach this problem from two different perspectives:
 <p align="justify"> we would like to design a web application that provides an interface by which data scientists or store managers can use past sales data to forecast it from a selected date. In addition to allowing the user to retrain and tune three different time series models, the application also displays the model performance, past information and forecasted predictions visually. </p>
 
 
-### Data Analysis
+### Data
 ---
 
 #### Dataset
@@ -64,6 +64,23 @@ The following operations were done on the raw data as a part of the cleanup proc
 
 - Imputing Missing values for quantitative features Econ_ChangeGDP, Econ_JobsChange, Annualized_CPI using forward filling as these are an economic indicator which will remain same.
 
+
+### Exploratory Data Analysis
+---
+
+We performed profiling of all the variables used in the analysis for the distributions of numeric features, unique values of categorical features, and correlations.
+
+![alt text](images/DatasetInfo.png)
+
+![alt text](images/Corr-Plot.png)
+
+We also brought week as a variable in our analysis from the date and looked at the variation of sales prices over the three years with heatmaps. The anticipated climb in sales during the weeks of November/December can be easily observed here.
+
+![alt text](images/Heatmap-plot.png)
+
+To be able to study the trend in features like ‘Num_Employees’ and ‘Num_Customers’ over the time especially during Black Friday and Christmas for a given store, we have visualized the data using plotly. Below we can see the Number of employees required climbs up during the holidays season to able to help high volume of customers needs.
+
+![alt text](images/NumCustomer-Plot.png)
 
 ### Task Analysis
 ---
